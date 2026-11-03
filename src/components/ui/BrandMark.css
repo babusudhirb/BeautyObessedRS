@@ -1,0 +1,77 @@
+/* RS Beauty brand mark (navbar and footer). Colours come from the palette:
+   wine and a deepened gold on ivory, ivory and gold on the wine footer. */
+
+.brandmark {
+  --mark-ink: var(--wine);
+  /* Gold deepened just enough to read on ivory (about 3.5:1 at display size). */
+  --mark-accent: color-mix(in srgb, var(--gold) 80%, var(--ink));
+  --mark-size: 2.25rem;
+
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--font-serif);
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--mark-ink);
+  border-radius: 4px;
+}
+
+.brandmark__mono {
+  display: inline-flex;
+  align-items: baseline;
+  font-size: var(--mark-size);
+  font-weight: 560;
+  /* Fraunces' display cut: the highest stroke contrast. */
+  font-variation-settings: 'opsz' 144;
+}
+
+.brandmark__r {
+  display: inline-block;
+}
+
+/* The italic letters come from a small cut of Fraunces italic (styles/fonts.css). */
+.brandmark__s,
+.brandmark__word {
+  font-family: 'Fraunces Brandmark', var(--font-serif);
+}
+
+/* The italic S tucks under the R's leg, as on the printed monogram. */
+.brandmark__s {
+  display: inline-block;
+  margin-left: -0.17em;
+  font-style: italic;
+  font-weight: 460;
+  color: var(--mark-accent);
+  transform: translateY(0.07em);
+}
+
+.brandmark__word {
+  position: relative;
+  margin-left: 0.36em;
+  padding-left: 0.5em;
+  font-size: calc(var(--mark-size) * 0.64);
+  font-style: italic;
+  font-weight: 420;
+  font-variation-settings: 'opsz' 72;
+  letter-spacing: 0.01em;
+}
+
+/* Gold hairline between the monogram and the word */
+.brandmark__word::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 1px;
+  height: 1.2em;
+  background: var(--mark-accent);
+  opacity: 0.55;
+  transform: translateY(-46%);
+}
+
+@media (max-width: 639.98px) {
+  .brandmark {
+    --mark-size: 2rem;
+  }
+}

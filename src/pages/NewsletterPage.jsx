@@ -4,9 +4,8 @@ import '@fontsource-variable/fraunces/opsz-italic.css';
 import { ExploreMore } from '../components/BlogPage/BlogSections.jsx';
 import EbookFaq from '../components/EbookLanding/EbookFaq.jsx';
 import { Benefits, LookInside, NewsletterHero, SignupBand } from '../components/NewsletterPage/NewsletterSections.jsx';
+import PageMeta from '../components/Seo/PageMeta.jsx';
 import { faqs } from '../data/newsletterPage.js';
-import { absoluteUrl } from '../data/seo.js';
-import useMetaDescription from '../hooks/useMetaDescription.js';
 // Layout primitives shared with the e-book page and the blog page's explore cards.
 import '../components/EbookLanding/EbookLanding.css';
 import '../components/PodcastPage/PodcastPage.css';
@@ -19,12 +18,9 @@ const DESCRIPTION =
 
 // The newsletter page: The Beauty Letter. Section order follows its reference.
 export default function NewsletterPage() {
-  useMetaDescription(DESCRIPTION);
-
   return (
     <div className="ebk blog nl">
-      <title>{TITLE}</title>
-      <link rel="canonical" href={absoluteUrl('/newsletter')} />
+      <PageMeta title={TITLE} description={DESCRIPTION} path="/newsletter" image="nl-hero" />
       <NewsletterHero />
       <Benefits />
       <LookInside />

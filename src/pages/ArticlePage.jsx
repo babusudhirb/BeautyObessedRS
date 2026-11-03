@@ -13,10 +13,10 @@ import {
 } from '../components/BlogPage/ArticleSections.jsx';
 import Rich from '../components/ui/Rich.jsx';
 import UpcomingPage from './UpcomingPage.jsx';
+import PageMeta from '../components/Seo/PageMeta.jsx';
 import { articleBySlug, categoryLabel, movedArticles, relatedArticles } from '../data/blog.js';
 import manifest from '../data/image-manifest.json';
 import { absoluteUrl } from '../data/seo.js';
-import useMetaDescription from '../hooks/useMetaDescription.js';
 // Layout primitives shared with the e-book page, the blog page's cards, and the article's own styles.
 import '../components/EbookLanding/EbookLanding.css';
 import '../components/BlogPage/BlogPage.css';
@@ -85,7 +85,6 @@ function structuredData(article, url) {
 }
 
 function Article({ article }) {
-  useMetaDescription(article.description);
   const url = absoluteUrl(articleUrl(article.slug));
   const sections = article.sections.map((section) => ({ ...section, id: headingId(section.heading) }));
   const contents = [
@@ -96,8 +95,7 @@ function Article({ article }) {
 
   return (
     <div className="ebk blog art">
-      <title>{article.seoTitle}</title>
-      <link rel="canonical" href={url} />
+      <PageMeta title={article.seoTitle} description={article.description} path={articleUrl(article.slug)} image={article.image} type="article" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData(article, url)) }} />
 
       <article aria-labelledby="art-title">

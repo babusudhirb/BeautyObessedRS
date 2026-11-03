@@ -7,7 +7,8 @@ import {
   ShopNewsletter,
   StandardBand,
 } from '../components/ShopPage/ShopSections.jsx';
-import { faqs } from '../data/shop.js';
+import PageMeta from '../components/Seo/PageMeta.jsx';
+import { faqs, hero } from '../data/shop.js';
 // Layout primitives shared with the e-book page, and the podcast page's form inputs.
 import '../components/EbookLanding/EbookLanding.css';
 import '../components/PodcastPage/PodcastPage.css';
@@ -18,7 +19,12 @@ import '../components/ShopPage/ShopPage.css';
 export default function ShopPage() {
   return (
     <div className="ebk shop">
-      <title>Shop the Rachna Beauty Collection — Skincare, Haircare and Nail Care</title>
+      <PageMeta
+        title="Shop the Rachna Beauty Collection — Skincare, Haircare and Nail Care"
+        description={`${hero.eyebrow}: ${hero.copy.charAt(0).toLowerCase()}${hero.copy.slice(1)}`}
+        path="/shop"
+        image="retail-hero"
+      />
       <ShopHero />
       <div className="shop-stage">
         <CategoryGrid />

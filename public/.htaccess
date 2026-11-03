@@ -1,0 +1,51 @@
+# Hostinger (LiteSpeed, which reads Apache .htaccess files).
+# Vite copies this file into dist/, so it is uploaded with the site.
+# See "Deploying to Hostinger" in README.md.
+
+Options -MultiViews -Indexes
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Old addresses, moved permanently. The app redirects them too.
+  RewriteRule ^retail/?$ /shop [R=301,L]
+  RewriteRule ^blog/?$ /blogs [R=301,L]
+
+  # Built files, images and fonts are served as they are; a missing one is a
+  # real 404, never the HTML page.
+  RewriteRule ^(assets|images|fonts)/ - [L]
+
+  # Any other existing file (robots.txt, sitemap.xml, favicon.svg) as it is.
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteRule ^ - [L]
+
+  # Every other path is a page of the app (/blogs, /shop, /blogs/<article>…):
+  # serve index.html and let the app show the page, or its "page not found".
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  # Files in /assets have a content hash in their name: cache them for a year.
+  SetEnvIf Request_URI "^/assets/" HASHED_ASSET
+  Header set Cache-Control "public, max-age=31536000, immutable" env=HASHED_ASSET
+
+  # Images and fonts keep their names between builds: cache them for a week.
+  SetEnvIf Request_URI "^/(images|fonts)/" STATIC_FILE
+  Header set Cache-Control "public, max-age=604800" env=STATIC_FILE
+
+  # The page itself is always checked, so a new upload shows straight away.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType font/woff2 .woff2
+  AddType image/webp .webp
+  AddType image/svg+xml .svg
+</IfModule>

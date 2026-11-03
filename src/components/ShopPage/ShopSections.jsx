@@ -52,7 +52,8 @@ export function CategoryGrid() {
       <ul className="shop-cats__grid">
         {categories.map((category) => (
           <li key={category.id} className="card shop-cat">
-            <Picture name={category.image} className="shop-cat__img" alt="" sizes="(min-width: 1100px) 23vw, (min-width: 700px) 46vw, 46vw" style={{ objectPosition: category.focus }} />
+            {/* The categories start on the first screen, just below the hero. */}
+            <Picture name={category.image} className="shop-cat__img" alt="" sizes="(min-width: 1100px) 23vw, (min-width: 700px) 46vw, 46vw" style={{ objectPosition: category.focus }} loading="eager" />
             <div className="shop-cat__body">
               <h3 className="shop-cat__title">{category.title}</h3>
               <p className="shop-cat__copy">{category.copy}</p>

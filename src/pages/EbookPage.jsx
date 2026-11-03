@@ -1,6 +1,7 @@
 // The italic cut of the headline serif, used by the hero and the quote card.
 import '@fontsource-variable/fraunces/opsz-italic.css';
 
+import PageMeta from '../components/Seo/PageMeta.jsx';
 import AboutRachna from '../components/EbookLanding/AboutRachna.jsx';
 import BottomCta from '../components/EbookLanding/BottomCta.jsx';
 import CollectionBanner from '../components/EbookLanding/CollectionBanner.jsx';
@@ -16,7 +17,12 @@ import '../components/EbookLanding/EbookLanding.css';
 export default function EbookPage() {
   return (
     <div className="ebk">
-      <title>E-books by Rachna — Beauty Daily Routine, Skincare Guide and Haircare Guide</title>
+      <PageMeta
+        title="E-books by Rachna — Beauty Daily Routine, Skincare Guide and Haircare Guide"
+        description="Practical, easy-to-follow e-books by Rachna (Beauty Daily Routine, Skincare Guide and Haircare Guide) to help you build healthier routines and feel more confident every day."
+        path="/ebook"
+        image="ebook-hero-books"
+      />
       <EbookHero />
       <GuideCards />
       <CollectionBanner />

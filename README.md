@@ -91,8 +91,7 @@ in `scripts/optimize-images.mjs`.
 ## The podcast and shop pages
 
 `/podcast` and `/shop` (`/retail` redirects to it) share the e-book page's
-navbar set (`site.js` → `pageNav`), its layout primitives and its FAQ
-component. Their photographs come from the `podcast/` and `retail/` folders
+layout primitives and its FAQ component. Their photographs come from the `podcast/` and `retail/` folders
 through `scripts/optimize-images.mjs`.
 
 The podcast page reuses the homepage's episode data and player, so both pages
@@ -162,10 +161,16 @@ which keeps the stylesheet in its original order.
   `dist/sitemap.xml` (the six finished pages and the 20 articles; "coming
   soon" pages are left out) and a `robots.txt` that points at it. Without it,
   pages use the address they are viewed on and the build skips the sitemap.
-- `robots.txt` always allows everything; nothing adds `noindex`.
+- Every page sets its title, meta description, canonical link and Open Graph
+  tags through `components/Seo/PageMeta.jsx`; the share image is a ~1200px
+  WebP of the page's hero photograph.
+- `robots.txt` always allows everything. Only the "coming soon" pages and
+  "page not found" carry `<meta name="robots" content="noindex">` (and no
+  canonical link), so placeholders stay out of search results. A real page that
+  replaces a placeholder does not inherit it.
 - The dev server serves `/robots.txt` and `/sitemap.xml` for checking.
 - The host must serve `index.html` for every path so article URLs work when
-  opened directly (see "Adding a real page").
+  opened directly (see "Deploying to Hostinger").
 - Titles and descriptions are set in the browser. Google renders JavaScript,
   but link previews on social apps read only the HTML, so they will show the
   site-wide title until the pages are pre-rendered.
@@ -187,12 +192,9 @@ ticked; they only report success when the endpoint accepts the request.
 Past-issue cards open `/newsletter/archive`, a "coming soon" page, until real
 issues exist.
 
-## The newsletter page
+### Newsletter details
 
-`/newsletter` shows the RS monogram in the navbar and links each nav item to
-its own page (`site.js` → `newsletterNav`). Both sign-up forms post to
-`VITE_NEWSLETTER_ENDPOINT`, require the consent box, and only report success
-when the endpoint accepts the request. The phone hero uses
+The phone hero uses
 `hero section in mobile view newsletter.png`.
 
 Still to supply (`data/newsletterPage.js`): the welcome gift (`hero.welcomeGift`,
@@ -258,11 +260,17 @@ photographs, defined by the `extract` entries in the same script. The nail and
 diet thumbnails come from the phone mockup and are low resolution; replace them
 when dedicated photographs exist.
 
-`Refrence image .png`, `refrence image section .png`,
-`Refrence image of ebook.png`, `podcast/refrence image podcast.png` and
-`retail/refrence image of retail.png` and `Blog refrence image .png` are design
-references only. They are
-never loaded by the site.
+The PNGs in the root, `podcast/` and `retail/` that are listed in `SOURCES`
+are committed, so a fresh clone can still run `npm run images`.
+
+The design reference screenshots (`Refrence image .png`,
+`refrence image section .png`, `Refrence image of ebook.png`,
+`podcast/refrence image podcast.png`, `retail/refrence image of retail.png`,
+`Blog refrence image .png`, `refrence image of news letter.png` and
+`about me refrence image .png`) are never loaded by the site. They stay on the
+local machine only: `.gitignore` keeps them out of the repository. Unused
+duplicates were moved out of the project to
+`C:\Beatutyobssede ne-local-assets-backup\` (see `ASSET_CLEANUP_REPORT.md`).
 
 ## Content still needed
 
@@ -308,18 +316,60 @@ The newsletter form validates the address and, until an endpoint is set, tells
 the visitor plainly that sign-ups are not open. It only reports success when the
 endpoint accepts a `POST` with `{ "email": "…" }`.
 
-## Navigation
+## Navigation, brand mark and footer
 
-Every navbar item opens its own page: Home `/`, E-book `/ebook`, Podcast
-`/podcast`, Retail `/shop`, Blogs `/blogs`, Newsletter `/newsletter` and About
-`/about` (`data/site.js`). The homepage keeps its sections, which can still be
-linked directly (`/#ebook`, `/#blogs`, …), and while you scroll the homepage
-the navbar highlights the item for the section on screen. On every other page
-the item for that page, or the page it sits under, is highlighted.
+Every page, including articles, the newsletter and "coming soon" pages, shows
+the same navbar and footer. `App.jsx` renders each once, around the routes.
+
+- Navbar order (`data/site.js` → `navLinks`): Home `/`, About Me `/about`,
+  E-book `/ebook`, Podcast `/podcast`, Shop `/shop`, Blogs `/blogs`,
+  Newsletter `/newsletter`, then the "Get My Beauty Plan" button. The link for
+  the current page, or the page it sits under (Blogs on each article, Shop on
+  each product), is highlighted. The mobile menu closes after any choice, on
+  Escape, and when the window widens to the desktop layout.
+- The homepage sections can still be linked directly (`/#ebook`, `/#blogs`,
+  `/#retail`, …), and the old `/retail` and `/blog` addresses redirect.
+- The RS Beauty brand mark (`components/ui/BrandMark.jsx`) is text, not an
+  image: an upright R interlocked with an italic gold S, a gold hairline and
+  "Beauty" in italics, all in the site's Fraunces. The italic letters come
+  from a 5 KB cut of Fraunces italic (`public/fonts`, declared in
+  `styles/fonts.css` and preloaded in `index.html`), so pages without other
+  italics never load the full italic font. The footer shows the same mark in
+  ivory and gold, with "Beauty Obsessed by Rachna Sinha" beneath it. The
+  original logo image (`Rs logo in nav bar.png`, `nav-logo` in the image
+  manifest) is kept but no longer used in the navbar.
+- The footer's Explore list is the same `navLinks`. Its social links use
+  `profileLink()`: YouTube goes to Rachna's channel; Instagram and Spotify go
+  to `/connect` until their addresses are set. The footer has no sign-up
+  form, because no newsletter endpoint is configured yet; the homepage and
+  `/newsletter` forms cover sign-up.
 
 Features that are not ready yet open a "coming soon" page with a description
 and a Back to home button (`data/pages.js`): e.g. `/videos` for the e-book
 page's video cards, `/ebook/checkout`, `/shop/<product>` and `/search`.
+
+## Performance
+
+- Only the homepage and the small placeholder page are in the first
+  download. Every other page loads its own code and styles when opened
+  (`pages/lazyPages.js`). On a direct visit, `index.html` starts downloading
+  that page's files alongside the main script (`scripts/preloads.mjs` writes
+  the list at build time), and `main.jsx` waits for them before the first
+  render, so the page appears in one go without a loading placeholder. Two
+  layout style sheets shared by several pages (`EbookLanding.css`,
+  `PodcastPage.css`) stay in the first download, in their original order, so
+  the cascade is unchanged.
+- `index.html` preloads each page's hero (LCP) image before the script runs.
+  `<Picture>` lazy-loads every other image, except those that show on the
+  first screen, which pass `loading="eager"`. Only the hero uses
+  `fetchpriority="high"`. Every image has width and height, so nothing jumps
+  as it loads.
+- Fonts are self-hosted (Fontsource) and not preloaded, so they never compete
+  with the hero image. Instead `styles/fonts.css` defines fallbacks (local
+  Arial and Georgia, resized to Inter's and Fraunces' measurements), so text
+  keeps its line breaks when the real fonts swap in. The rupee sign comes from
+  a 1 KB cut of Inter rather than Inter's 85 KB "latin-ext" file, which it
+  alone would otherwise pull in.
 
 ## Adding a real page
 
@@ -330,3 +380,27 @@ Every link on the homepage resolves. Pages that do not exist yet are listed in
 
 The site uses clean URLs (`/ebook`, not `/#/ebook`), so the host must serve
 `index.html` for unknown paths (the usual single-page-app rewrite).
+
+## Deploying to Hostinger
+
+1. Set `VITE_SITE_URL` (and any form endpoints) in `.env.production`; see
+   `.env.example`. Don't commit that file.
+2. Run `npm run build`.
+3. Upload the **contents** of `dist/` (not the folder itself) to
+   `public_html`, including the hidden `.htaccess` file. In Hostinger's
+   File Manager, turn on "Show hidden files" to check that it is there.
+
+`dist/.htaccess` comes from `public/.htaccess`. Hostinger's web server
+(LiteSpeed) reads it the way Apache does:
+
+- `/blogs`, `/shop`, `/newsletter`, `/blogs/<article>` and every other page
+  path are served `index.html`, so opening or refreshing any URL works. Unknown
+  paths show the app's "page not found" page.
+- Missing files under `/assets`, `/images` and `/fonts` return a real 404,
+  never the HTML page.
+- `/retail` → `/shop` and `/blog` → `/blogs` are permanent (301) redirects.
+- Hashed files in `/assets` are cached for a year, images and fonts for a
+  week, and `index.html` is always revalidated, so a new upload shows at once.
+
+If the site is ever placed in a sub-folder instead of the domain root, change
+`RewriteBase` and the final rule to that folder, and set Vite's `base`.

@@ -16,9 +16,9 @@ import {
   categoryUrl,
 } from '../components/BlogPage/BlogSections.jsx';
 import { SectionHead } from '../components/EbookLanding/parts.jsx';
+import PageMeta from '../components/Seo/PageMeta.jsx';
 import { articles, categories, categoryLabel, featured } from '../data/blog.js';
 import { absoluteUrl } from '../data/seo.js';
-import useMetaDescription from '../hooks/useMetaDescription.js';
 // Layout primitives shared with the e-book page, and the podcast page's inputs and stats.
 import '../components/EbookLanding/EbookLanding.css';
 import '../components/PodcastPage/PodcastPage.css';
@@ -55,7 +55,6 @@ const FIRST_PAGE = 9;
 export default function BlogPage() {
   const [{ category, query }, setFilters] = useState(readParams);
   const [showAll, setShowAll] = useState(false);
-  useMetaDescription(DESCRIPTION);
 
   // Mirror the filters in the URL without a router navigation, which would
   // scroll the page back to the top on every keystroke.
@@ -106,8 +105,7 @@ export default function BlogPage() {
 
   return (
     <div className="ebk blog">
-      <title>{TITLE}</title>
-      <link rel="canonical" href={canonical} />
+      <PageMeta title={TITLE} description={DESCRIPTION} path="/blogs" image="product-bodycare" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
 
       <BlogHero query={query} onQuery={(value) => setFilters((current) => ({ ...current, query: value }))} />

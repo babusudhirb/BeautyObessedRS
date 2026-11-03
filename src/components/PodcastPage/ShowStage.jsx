@@ -37,6 +37,9 @@ export default function ShowStage() {
           className="pod-show__photo"
           alt="Rachna at her podcast desk, seated beside a studio microphone"
           sizes="(min-width: 1100px) 40vw, 94vw"
+          // Its top edge shows on the first screen, where on phones it is the
+          // largest image, so it is fetched straight away.
+          loading="eager"
         />
 
         <div className="podcast__panel pod-show__panel">

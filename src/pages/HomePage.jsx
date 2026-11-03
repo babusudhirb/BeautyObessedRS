@@ -1,3 +1,4 @@
+import PageMeta from '../components/Seo/PageMeta.jsx';
 import Hero from '../components/Hero/Hero.jsx';
 import StatsStrip from '../components/StatsStrip/StatsStrip.jsx';
 import WhatRachnaDoes from '../components/WhatRachnaDoes/WhatRachnaDoes.jsx';
@@ -11,11 +12,20 @@ import About from '../components/About/About.jsx';
 import Faq from '../components/Faq/Faq.jsx';
 import Newsletter from '../components/Newsletter/Newsletter.jsx';
 
+// The same wording as the description in index.html.
+const DESCRIPTION =
+  'Rachna is a beauty expert, salon founder and trainer in Bangalore. Personalised beauty plans, the Beauty Daily Routine e-book, the Beauty Obsessed podcast and XING Hair & Skin salons.';
+
 // Section order follows the reference design.
 export default function HomePage() {
   return (
     <>
-      <title>Rachna — Beauty Expert, Salon Founder &amp; Personal Beauty Planner</title>
+      <PageMeta
+        title="Rachna — Beauty Expert, Salon Founder & Personal Beauty Planner"
+        description={DESCRIPTION}
+        path="/"
+        image="home-hero-portrait"
+      />
       <Hero />
       <StatsStrip />
       <WhatRachnaDoes />

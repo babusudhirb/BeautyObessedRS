@@ -88,7 +88,8 @@ export function FeaturedStory({ article }) {
   return (
     <section className="ebk-container" aria-label="Featured story">
       <article className="card blog-featured">
-        <Picture name={article.image} className="blog-featured__img" alt={article.alt} sizes="(min-width: 900px) 56vw, 92vw" style={{ objectPosition: article.focus }} />
+        {/* On the first screen, just below the hero. */}
+        <Picture name={article.image} className="blog-featured__img" alt={article.alt} sizes="(min-width: 900px) 56vw, 92vw" style={{ objectPosition: article.focus }} loading="eager" />
         <div className="blog-featured__body">
           <p className="blog-tag">{categoryLabel(article.category)}</p>
           <h2 className="blog-featured__title">

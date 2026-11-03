@@ -2,69 +2,34 @@
 // Values marked TODO need a real answer from Rachna's team before launch.
 
 export const brand = {
-  wordmark: 'RACHNA',
-  name: 'Rachna',
+  // The brand mark in the navbar and footer (components/ui/BrandMark.jsx).
+  name: 'RS Beauty',
+  fullName: 'Beauty Obsessed by Rachna Sinha',
   tagline: 'Beauty advice, salon services, training and inspiration for your everyday routine.',
   copyrightYear: 2026,
 };
 
-// Each link opens its own page. `section` is the id of the homepage section on
-// the same subject: on the homepage the navbar highlights the link while that
-// section is on screen. The sections stay reachable at /#ebook, /#blogs etc.
+// The navbar on every page and the footer's Explore list. The link for the
+// page the visitor is on, or the page it sits under (Blogs on each article),
+// is highlighted. The homepage sections stay reachable at /#ebook, /#blogs etc.
 export const navLinks = [
-  { label: 'Home', to: '/', section: 'top' },
-  { label: 'E-book', to: '/ebook', section: 'ebook' },
-  { label: 'Podcast', to: '/podcast', section: 'podcast' },
-  { label: 'Retail', to: '/shop', section: 'retail' },
-  { label: 'Blogs', to: '/blogs', section: 'blogs' },
-  // A page of its own, not a homepage section; `section` never matches an id there.
-  { label: 'Newsletter', to: '/newsletter', section: 'newsletter-page' },
-  { label: 'About Me', to: '/about', section: 'about' },
+  { label: 'Home', to: '/' },
+  { label: 'About Me', to: '/about' },
+  { label: 'E-book', to: '/ebook' },
+  { label: 'Podcast', to: '/podcast' },
+  { label: 'Shop', to: '/shop' },
+  { label: 'Blogs', to: '/blogs' },
+  { label: 'Newsletter', to: '/newsletter' },
 ];
 
 export const primaryCta = { label: 'Get My Beauty Plan', to: '/#beauty-plan' };
-
-// The newsletter page (/newsletter) uses the homepage's style of navbar with
-// the RS monogram, and links straight to each page rather than to homepage
-// sections.
-export const newsletterNav = [
-  { label: 'Home', to: '/' },
-  { label: 'E-books', to: '/ebook' },
-  { label: 'Podcast', to: '/podcast' },
-  { label: 'Retail', to: '/shop' },
-  { label: 'Blogs', to: '/blogs' },
-  { label: 'Newsletter', to: '/newsletter' },
-  { label: 'About Me', to: '/about' },
-];
-
-// The e-book, podcast and shop pages (and anything beneath them) share their
-// own navbar links and icon links; each page has its own call to action.
-export const pageNav = {
-  links: [
-    { label: 'Home', to: '/' },
-    { label: 'E-books', to: '/ebook' },
-    { label: 'Podcast', to: '/podcast' },
-    { label: 'Shop', to: '/shop' },
-    { label: 'Blog', to: '/blogs' },
-    { label: 'Newsletter', to: '/newsletter' },
-    { label: 'About', to: '/about' },
-  ],
-  ctas: {
-    '/ebook': { label: 'Get the Bundle', to: '/ebook#bundle' },
-    '/podcast': { label: 'Get the Bundle', to: '/ebook#bundle' },
-    '/shop': { label: 'Explore Products', to: '/shop#categories' },
-  },
-  tools: [
-    { id: 'search', label: 'Search', to: '/search' },
-    { id: 'bag', label: 'Your bag', to: '/ebook/checkout' },
-  ],
-};
 
 // TODO: add the real profile and show URLs. While a value is empty the link
 // goes to the internal /connect page instead of a guessed address.
 const externalProfiles = {
   instagram: '',
-  youtube: '',
+  // Rachna's channel, supplied 2026-10-15.
+  youtube: 'https://www.youtube.com/@Rachnasinha2020',
   spotify: '',
   applePodcasts: '',
 };

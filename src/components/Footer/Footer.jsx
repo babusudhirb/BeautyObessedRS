@@ -1,18 +1,19 @@
 import { Link } from 'react-router-dom';
 import ArrowLink from '../ui/ArrowLink.jsx';
+import BrandMark from '../ui/BrandMark.jsx';
 import SmartLink from '../ui/SmartLink.jsx';
 import { BRAND_ICONS } from '../ui/icons.jsx';
 import { brand, navLinks, salon, socialLinks, supportLinks } from '../../data/site.js';
 import './Footer.css';
 
+// The one footer, rendered once by App.jsx for every page.
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer__inner container">
         <div className="footer__brand">
-          <Link to="/" className="footer__wordmark" aria-label={`${brand.name} — home`}>
-            {brand.wordmark}
-          </Link>
+          <BrandMark className="footer__mark" />
+          <p className="footer__name">{brand.fullName}</p>
           <p className="footer__tagline">{brand.tagline}</p>
 
           <ul className="footer__social">
@@ -75,7 +76,7 @@ export default function Footer() {
         </nav>
 
         <p className="footer__legal">
-          © {brand.copyrightYear} {brand.name}. All rights reserved.{' '}
+          © {brand.copyrightYear} {brand.name} · {brand.fullName}. All rights reserved.{' '}
           <span>Content is educational and not a substitute for professional advice.</span>
         </p>
       </div>

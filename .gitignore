@@ -1,8 +1,37 @@
+# Dependencies and build output
 node_modules/
 dist/
+
+# Local tool settings
 .claude/
 *.local
-.DS_Store
+
+# Environment files: only the blank template is committed
 .env
 .env.*
 !.env.example
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs, caches and temporary files
+*.log
+npm-debug.log*
+.vite/
+.cache/
+*.tmp
+
+# Test output and browser captures
+test-results/
+playwright-report/
+coverage/
+screenshots/
+
+# Local-only design references (each page's reference screenshot, used for
+# visual comparison and never loaded by the site) and asset backups
+*[Rr]efrence image*
+*-local-assets-backup/
+/ASSET_CLEANUP_REPORT.md
+/GITHUB_PREP_REPORT.md

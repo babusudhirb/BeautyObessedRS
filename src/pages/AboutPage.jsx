@@ -6,7 +6,7 @@ import { Closing, Experience, Explore, Philosophy, Qualifications, Skills, Story
 import { person, seo } from '../data/aboutPage.js';
 import manifest from '../data/image-manifest.json';
 import { absoluteUrl } from '../data/seo.js';
-import useMetaDescription from '../hooks/useMetaDescription.js';
+import PageMeta from '../components/Seo/PageMeta.jsx';
 import '../components/AboutPage/AboutPage.css';
 
 // Only confirmed facts: name, roles, city, salon brand and YouTube channel.
@@ -32,13 +32,11 @@ function structuredData(url) {
 
 // The About page. Section order follows its design reference.
 export default function AboutPage() {
-  useMetaDescription(seo.description);
   const url = absoluteUrl('/about');
 
   return (
     <div className="ab">
-      <title>{seo.title}</title>
-      <link rel="canonical" href={url} />
+      <PageMeta title={seo.title} description={seo.description} path="/about" image="about-hero" type="profile" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData(url)) }} />
       <AboutHero />
       <Story />

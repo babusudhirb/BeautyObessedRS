@@ -1,21 +1,18 @@
-import { Suspense, lazy } from 'react';
+import { Suspense } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer/Footer.jsx';
 import Navbar from './components/Navbar/Navbar.jsx';
 import ScrollManager from './components/ScrollManager.jsx';
 import { upcomingPages } from './data/pages.js';
-import AboutPage from './pages/AboutPage.jsx';
-import EbookPage from './pages/EbookPage.jsx';
+// Layout styles shared by several of the pages below. They stay in the first
+// download, in their original place around the homepage's styles, so the
+// cascade is unchanged and each page's own styles still come after them.
+import './components/EbookLanding/EbookLanding.css';
 import HomePage from './pages/HomePage.jsx';
-import PodcastPage from './pages/PodcastPage.jsx';
-import ShopPage from './pages/ShopPage.jsx';
+import './components/PodcastPage/PodcastPage.css';
 import UpcomingPage from './pages/UpcomingPage.jsx';
-
-// The blog, its articles and the newsletter page share the article library,
-// so they load as their own chunk that the other pages never download.
-const ArticlePage = lazy(() => import('./pages/ArticlePage.jsx'));
-const BlogPage = lazy(() => import('./pages/BlogPage.jsx'));
-const NewsletterPage = lazy(() => import('./pages/NewsletterPage.jsx'));
+// Every other page loads its own code when it is opened.
+import { AboutPage, ArticlePage, BlogPage, EbookPage, NewsletterPage, PodcastPage, ShopPage } from './pages/lazyPages.js';
 
 export default function App() {
   return (

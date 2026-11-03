@@ -7,9 +7,9 @@
 
 import { profileLink } from './site.js';
 
-// Rachna's channel, as supplied for this page.
+// Rachna's channel (the address is kept in site.js).
 export const youtubeChannel = {
-  url: 'https://www.youtube.com/@Rachnasinha2020',
+  url: profileLink('youtube'),
   handle: '@Rachnasinha2020',
 };
 

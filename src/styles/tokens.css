@@ -34,8 +34,8 @@
   --grad-honey: linear-gradient(100deg, var(--honey) 0%, var(--honey-light) 100%);
 
   /* Typography */
-  --font-serif: 'Fraunces Variable', 'Playfair Display', Georgia, 'Times New Roman', serif;
-  --font-sans: 'Inter Variable', 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Fraunces Variable', 'Fraunces Fallback', 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter Variable', 'Inter Fallback', 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;

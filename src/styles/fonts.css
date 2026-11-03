@@ -1,0 +1,49 @@
+/* Small font files cut from the self-hosted fonts in public/fonts.
+   They are declared after the Fontsource imports in main.jsx. */
+
+/* The rupee sign is the only character on the site outside Inter's basic Latin
+   file. Without this face the browser downloads the whole 85 KB "latin-ext"
+   file for it. Overlapping faces are checked last-declared first, so this
+   1 KB file supplies the ₹ instead. */
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('/fonts/inter-rupee.woff2') format('woff2-variations');
+  unicode-range: U+20B9;
+}
+
+/* The italic S and "Beauty" of the RS Beauty brand mark (BrandMark.css),
+   so pages that use no other italics need not load the 81 KB italic file.
+   index.html preloads it, as the mark is on every first screen. */
+@font-face {
+  font-family: 'Fraunces Brandmark';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('/fonts/fraunces-italic-brandmark.woff2') format('woff2-variations');
+}
+
+/* Fallbacks shaped like the web fonts, so text keeps its line breaks and
+   height when Inter and Fraunces swap in (no layout shift on slow
+   connections). The figures were measured in the browser against each font:
+   width (size-adjust), and the height above and below the baseline. Devices
+   without Arial or Georgia skip these and use the next font in the stack. */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  size-adjust: 106.4%;
+  ascent-override: 91.3%;
+  descent-override: 23.5%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Fraunces Fallback';
+  src: local('Georgia');
+  size-adjust: 103%;
+  ascent-override: 94.4%;
+  descent-override: 24.3%;
+  line-gap-override: 0%;
+}
