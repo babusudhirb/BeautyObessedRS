@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#FBF6F0" />
+    <title>Rachna — Beauty Expert, Salon Founder &amp; Personal Beauty Planner</title>
+    <meta
+      name="description"
+      content="Rachna is a beauty expert, salon founder and trainer in Bangalore. Personalised beauty plans, the Beauty Daily Routine e-book, the Beauty Obsessed podcast and XING Hair &amp; Skin salons."
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Fetch the page's largest above-the-fold image before the JS bundle runs.
+         Each entry repeats the widths and `sizes` of that image's <Picture>. -->
+    <script>
+      (() => {
+        const hero = {
+          '/': ['home-hero-portrait', [480, 800, 1200, 1600, 1728], '(min-width: 966px) 49vw, 60vw'],
+          '/ebook': ['ebook-hero-books', [480, 800, 1200, 1542], '(min-width: 920px) 49vw, 94vw'],
+          '/podcast': ['pod-hero', [480, 800, 1200, 1600, 1672], '(min-width: 1100px) 100vw, (min-width: 700px) 50vw, 100vw'],
+          '/shop': ['retail-hero', [480, 800, 1200, 1600, 1671], '(min-width: 1100px) 100vw, (min-width: 700px) 50vw, 100vw'],
+          '/blogs': ['product-bodycare', [480, 800, 1200, 1536], '(min-width: 700px) 52vw, 40vw'],
+          '/about': ['about-hero', [480, 800, 1200, 1536], '(min-width: 900px) 64vw, 100vw'],
+        }[location.pathname.replace(/(.)\/$/, '$1')];
+        if (!hero) return;
+
+        // Phones get the phone-shaped podcast and shop photographs.
+        const phone = { '/podcast': 'pod-hero-mobile', '/shop': 'shop-hero-mobile' }[location.pathname.replace(/(.)\/$/, '$1')];
+        if (phone && matchMedia('(max-width: 699.98px)').matches) hero.splice(0, 3, phone, [480, 800, 1199], '42vw');
+
+        const [name, widths, sizes] = hero;
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.type = 'image/webp';
+        link.fetchPriority = 'high';
+        link.imageSrcset = widths.map((width) => `/images/${name}-${width}.webp ${width}w`).join(', ');
+        link.imageSizes = sizes;
+        document.head.append(link);
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

@@ -1,0 +1,389 @@
+/* The shop page (/shop). Built on the e-book page's layout primitives and the
+   shared PageHero. */
+
+.shop {
+  /* Distance from the page edge to the content column */
+  --side: max(var(--ebk-gutter), calc((100% - var(--ebk-max)) / 2));
+}
+
+.shop-hero .phero__media {
+  --phero-desktop: 100% 55%;
+}
+
+/* On wide screens the categories share one screen with Skincare, and Haircare
+   with Nail Care. */
+.shop-stage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(16px, 2vw, 26px);
+  min-height: calc(100svh - var(--nav-h) - 16px);
+  padding-top: clamp(18px, 2vw, 28px);
+}
+
+/* ---------- Shop by Category ---------- */
+
+.shop-cats__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(12px, 1.6vw, 22px);
+}
+
+.shop-cat {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.shop-cat__img {
+  width: 100%;
+  height: clamp(130px, 24svh - 24px, 230px);
+  object-fit: cover;
+}
+
+.shop-cat__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 12px clamp(14px, 1.5vw, 20px) 12px;
+}
+
+.shop-cat__title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--text-h3);
+  line-height: 1.2;
+  color: var(--wine);
+}
+
+.shop-cat__copy {
+  flex: 1;
+  margin: 4px 0 4px;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--ink-muted);
+}
+
+/* ---------- Collections ---------- */
+
+.shop-line {
+  display: grid;
+  grid-template-columns: calc(var(--side) + clamp(240px, 21vw, 320px)) minmax(0, 1fr);
+  gap: clamp(16px, 2vw, 28px);
+  padding-right: var(--side);
+}
+
+/* Blush panel that runs to the page's left edge, with a rounded right side */
+.shop-line__intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px clamp(18px, 2.4vw, 34px) 24px var(--side);
+  border-radius: 0 180px 180px 0 / 0 50% 50% 0;
+  background: linear-gradient(120deg, var(--blush-soft), color-mix(in srgb, var(--blush) 85%, var(--white)));
+}
+
+.shop-line__title {
+  margin-top: 10px;
+  font-size: clamp(1.75rem, 1rem + 1.45vw, 2.4rem);
+  line-height: 1.08;
+}
+
+.shop-line__copy {
+  max-width: 30ch;
+  margin-top: 12px;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+.shop-line__products {
+  --product-h: clamp(160px, 31svh - 46px, 290px);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(10px, 1.2vw, 16px);
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.product-card__img {
+  width: 100%;
+  height: var(--product-h);
+  object-fit: cover;
+}
+
+.product-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px clamp(12px, 1.3vw, 18px) 10px;
+}
+
+.product-card__label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amber-ink);
+}
+
+.product-card__name {
+  margin-top: 2px;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--wine);
+}
+
+.product-card__copy {
+  flex: 1;
+  margin: 4px 0 2px;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--ink-muted);
+}
+
+/* ---------- The Rachna Standard ---------- */
+
+.shop-standard {
+  margin-top: clamp(24px, 3vw, 40px);
+  background: linear-gradient(120deg, color-mix(in srgb, var(--wine) 80%, var(--espresso)), var(--espresso));
+  color: var(--ivory);
+}
+
+.shop-standard__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(20px, 3vw, 48px);
+  padding-block: clamp(26px, 3.2vw, 46px);
+}
+
+.shop-standard__title {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 12px;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--text-h2);
+  line-height: 1.1;
+}
+
+.shop-standard__title::after {
+  content: '';
+  flex: none;
+  width: 56px;
+  height: 1px;
+  background: var(--honey);
+}
+
+.shop-standard__text p {
+  max-width: 46ch;
+  line-height: 1.6;
+}
+
+.shop-standard__points {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.shop-standard__points li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 10px;
+  font-size: 0.9375rem;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.shop-standard__points li + li {
+  border-left: 1px solid rgb(251 246 240 / 0.2);
+}
+
+.shop-standard__points svg {
+  color: var(--honey);
+}
+
+/* ---------- Meet the Rachna collection ---------- */
+
+.shop-meet {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 60px);
+}
+
+.shop-meet__lead {
+  max-width: 44ch;
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  line-height: 1.45;
+  color: var(--wine);
+}
+
+.shop-meet__copy {
+  max-width: 56ch;
+  margin: 12px 0 20px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ink-muted);
+}
+
+.shop-meet__photo {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: 82% 40%;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+/* ---------- Newsletter ---------- */
+
+.shop-news {
+  margin-top: clamp(24px, 3vw, 40px);
+  background: var(--grad-blush);
+}
+
+.shop-news__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: 16px clamp(24px, 4vw, 60px);
+  padding-block: clamp(24px, 3vw, 40px);
+}
+
+.shop-news__title {
+  font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2.1rem);
+}
+
+.shop-news__copy {
+  margin-top: 6px;
+}
+
+.shop-news__form {
+  display: flex;
+  gap: 10px;
+}
+
+.shop-news__input {
+  flex: 1;
+  min-height: 50px;
+  border-color: transparent;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-card);
+}
+
+.shop-news__form .btn {
+  min-height: 50px;
+}
+
+.shop-news__message {
+  margin-top: 8px;
+  padding-inline: 18px;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--wine);
+}
+
+.shop-news__message:empty {
+  display: none;
+}
+
+/* ============ Responsive ============ */
+
+@media (max-width: 1099.98px) {
+  .shop-stage {
+    min-height: 0;
+    justify-content: flex-start;
+  }
+
+  /* Each collection stacks: its introduction, then the products */
+  .shop-line {
+    grid-template-columns: minmax(0, 1fr);
+    padding-inline: var(--side);
+  }
+
+  .shop-line__intro {
+    padding: 22px clamp(18px, 3vw, 30px);
+    border-radius: var(--radius-lg);
+  }
+
+  .shop-line__title .ebk-line {
+    display: inline;
+  }
+
+  .shop-line__copy {
+    max-width: 60ch;
+  }
+
+  .shop-line__products {
+    --product-h: 220px;
+  }
+
+  .shop-standard__inner,
+  .shop-meet,
+  .shop-news__inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 899.98px) {
+  .shop-cats__grid,
+  .shop-line__products {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .shop-cat__img {
+    height: 170px;
+  }
+}
+
+@media (max-width: 699.98px) {
+  .shop-line__products {
+    --product-h: 170px;
+  }
+
+  .shop-cat__img {
+    height: 120px;
+  }
+
+  .shop-cat__copy,
+  .product-card__copy {
+    font-size: 0.8125rem;
+  }
+
+  .shop-standard__points {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 18px;
+  }
+
+  .shop-standard__points li:nth-child(3) {
+    border-left: 0;
+  }
+
+  .shop-news__form {
+    flex-direction: column;
+  }
+
+  .shop-news__form .btn {
+    width: 100%;
+  }
+}
+
+/* Phones: the products sit beside the heading and copy */
+@media (max-width: 699.98px) {
+  .shop-hero {
+    --phero-rows: 2;
+    --phero-phone: 88% 60%;
+    /* As tall as the heading and copy beside it, so no gap opens between them */
+    --phero-media-min: 0px;
+  }
+}

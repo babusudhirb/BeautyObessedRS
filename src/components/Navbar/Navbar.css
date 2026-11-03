@@ -1,0 +1,252 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  /* Glass at the top of the page: translucent ivory over a soft blur. */
+  background-color: rgb(251 246 240 / 0.72);
+  -webkit-backdrop-filter: blur(16px) saturate(1.25);
+  backdrop-filter: blur(16px) saturate(1.25);
+  border-bottom: 1px solid rgb(200 150 62 / 0.16);
+  box-shadow: 0 10px 26px -24px rgb(122 31 61 / 0.5);
+  transition:
+    background-color 0.25s var(--ease),
+    border-color 0.25s var(--ease),
+    box-shadow 0.25s var(--ease);
+}
+
+/* Solid once the page scrolls, so text underneath never shows through. */
+.nav[data-scrolled='true'] {
+  background-color: var(--ivory);
+  border-bottom-color: rgb(200 150 62 / 0.3);
+  box-shadow: 0 12px 28px -22px rgb(122 31 61 / 0.6);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  height: var(--nav-h);
+}
+
+.nav__brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--font-serif);
+  font-size: 1.625rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.045em;
+  color: var(--wine);
+}
+
+.nav__links {
+  display: flex;
+  align-self: stretch;
+  gap: clamp(2px, 0.9vw, 12px);
+  margin-left: clamp(20px, 6vw, 96px);
+}
+
+.nav__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding-inline: 12px;
+  font-size: var(--text-sm);
+  font-weight: 560;
+  white-space: nowrap;
+  color: var(--ink);
+  transition: color 0.2s var(--ease);
+}
+
+/* Gold underline on the bottom edge of the bar */
+.nav__link::after {
+  content: '';
+  position: absolute;
+  right: 12px;
+  bottom: -1px;
+  left: 12px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s var(--ease);
+}
+
+.nav__link:hover,
+.nav__link[aria-current] {
+  color: var(--wine);
+}
+
+.nav__link:hover::after,
+.nav__link[aria-current]::after {
+  transform: scaleX(1);
+}
+
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.nav__toggle {
+  display: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-right: -8px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--wine);
+  cursor: pointer;
+}
+
+.nav__toggle:hover {
+  background: var(--blush);
+}
+
+/* ---------- Mobile menu ---------- */
+
+.nav__drawer {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  max-height: calc(100svh - var(--nav-h));
+  overflow-y: auto;
+  background: var(--ivory);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 28px 44px -26px rgb(122 31 61 / 0.45);
+}
+
+.nav__drawer[hidden] {
+  display: none;
+}
+
+.nav__drawer-inner {
+  padding-block: 4px 20px;
+}
+
+.nav__drawer-list {
+  margin-bottom: 16px;
+}
+
+.nav__drawer-link {
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+  border-bottom: 1px solid var(--line);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.nav__drawer-link[aria-current] {
+  color: var(--wine);
+}
+
+@media (max-width: 959.98px) {
+  .nav__links {
+    display: none;
+  }
+
+  .nav__toggle {
+    display: grid;
+  }
+
+  .nav__cta {
+    min-height: 40px;
+    padding-inline: 16px;
+    font-size: 0.8125rem;
+  }
+}
+
+/* On narrow phones the call to action moves into the menu. */
+@media (max-width: 479.98px) {
+  .nav__cta {
+    display: none;
+  }
+
+  .nav__brand {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 960px) {
+  .nav__drawer {
+    display: none;
+  }
+}
+
+/* Seven links plus the call to action: tighten the bar on small laptops
+   so nothing runs past the right edge. */
+@media (min-width: 960px) and (max-width: 1199.98px) {
+  .nav__links {
+    margin-left: 24px;
+  }
+
+  .nav__link {
+    padding-inline: 8px;
+  }
+
+  .nav__link::after {
+    right: 8px;
+    left: 8px;
+  }
+}
+
+/* ---------- E-book pages ---------- */
+
+/* A slimmer bar, with the current page underlined just below its label. */
+@media (min-width: 640px) {
+  .nav--ebook {
+    --nav-h: 62px;
+  }
+}
+
+.nav--ebook .nav__link {
+  font-weight: 500;
+}
+
+.nav--ebook .nav__link::after {
+  bottom: 15px;
+  background: var(--wine);
+}
+
+.nav--ebook .nav__cta {
+  min-height: 40px;
+}
+
+/* Icon links (search, bag) */
+.nav__tool {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--wine);
+  transition: background-color 0.2s var(--ease);
+}
+
+.nav__tool:hover {
+  background: var(--blush);
+}
+
+.nav__tool + .nav__cta {
+  margin-left: 10px;
+}
+
+/* ---------- Newsletter page: the RS monogram in place of the wordmark ---------- */
+
+.nav__brand--logo img {
+  width: auto;
+  height: 52px;
+}
+
+@media (max-width: 639.98px) {
+  .nav__brand--logo img {
+    height: 40px;
+  }
+}

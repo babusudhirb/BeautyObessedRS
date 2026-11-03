@@ -1,0 +1,459 @@
+/* An article page (/blogs/<slug>). Uses the blog page's tag, meta and card
+   styles (BlogPage.css) and the e-book page's container (EbookLanding.css). */
+
+.art {
+  --art-measure: 720px;
+}
+
+/* ---------- Header ---------- */
+
+.art-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding-top: clamp(16px, 2vw, 30px);
+}
+
+.art-head > * {
+  max-width: 900px;
+}
+
+.art-crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 6px;
+  padding: 0;
+  list-style: none;
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+}
+
+.art-crumbs li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.art-crumbs a {
+  font-weight: 500;
+}
+
+.art-crumbs a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* The current page's crumb is the article title; keep it to one line. */
+.art-crumbs [aria-current] {
+  display: inline-block;
+  max-width: 34ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
+}
+
+.art-crumbs__sep {
+  color: var(--rose-deep);
+}
+
+.art-head .blog-tag {
+  margin-top: 6px;
+}
+
+.art-title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(2rem, 1.2rem + 2.6vw, 3.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--wine);
+  text-wrap: balance;
+}
+
+.art-dek {
+  max-width: 60ch;
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  line-height: 1.5;
+  color: var(--ink-muted);
+}
+
+.art-byline a {
+  font-weight: 600;
+}
+
+.art-byline a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Cover ---------- */
+
+.art-cover {
+  margin-top: clamp(16px, 2vw, 28px);
+}
+
+.art-cover img {
+  width: 100%;
+  aspect-ratio: 2.4;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+/* ---------- Body and contents ---------- */
+
+.art-layout {
+  display: grid;
+  grid-template-columns: minmax(0, var(--art-measure)) minmax(220px, 290px);
+  justify-content: space-between;
+  align-items: start;
+  gap: clamp(28px, 4vw, 72px);
+  padding-top: clamp(24px, 3vw, 44px);
+}
+
+.art-toc {
+  position: sticky;
+  top: calc(var(--nav-h) + 20px);
+  grid-column: 2;
+  grid-row: 1;
+  max-height: calc(100svh - var(--nav-h) - 40px);
+  overflow-y: auto;
+  padding: 18px 20px;
+  border: 1px solid var(--blog-line);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  box-shadow: var(--shadow-card);
+}
+
+.art-toc__title {
+  margin-bottom: 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--amber-ink);
+}
+
+.art-toc__list {
+  display: grid;
+  gap: 2px;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.art-toc__list a {
+  display: block;
+  padding: 5px 0;
+  color: var(--ink);
+}
+
+.art-toc__list a:hover {
+  color: var(--wine);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.art-body {
+  grid-column: 1;
+  grid-row: 1;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+
+.art-intro p {
+  font-size: clamp(1.0625rem, 1rem + 0.2vw, 1.1875rem);
+}
+
+.art-intro p + p {
+  margin-top: 14px;
+}
+
+.art-section {
+  margin-top: clamp(30px, 3.2vw, 44px);
+}
+
+.art-section > * + * {
+  margin-top: 14px;
+}
+
+.art-h2 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 1.15rem + 1vw, 2rem);
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+  color: var(--wine);
+  text-wrap: balance;
+}
+
+.art-section > .art-h3 {
+  margin-top: 24px;
+}
+
+.art-h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.art-h3 + p {
+  margin-top: 6px;
+}
+
+/* Links inside the article text */
+.art-intro a,
+.art-section p a,
+.art-section li a,
+.art-note a {
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--rose);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+.art-intro a:hover,
+.art-section p a:hover,
+.art-section li a:hover,
+.art-note a:hover {
+  text-decoration-color: var(--wine);
+}
+
+.art-body strong {
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.art-list {
+  display: grid;
+  gap: 8px;
+  padding-left: 1.4em;
+  list-style: disc;
+}
+
+.art-list--ordered {
+  list-style: decimal;
+}
+
+.art-list li {
+  padding-left: 0.2em;
+}
+
+.art-list li::marker {
+  color: var(--rose-deep);
+  font-weight: 650;
+}
+
+/* ---------- Tip, table and figure ---------- */
+
+.art-tip {
+  display: flex;
+  gap: 14px;
+  padding: 16px 20px;
+  border: 1px solid var(--blog-line);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--blush) 38%, var(--white));
+}
+
+.art-tip__icon {
+  flex: none;
+  margin-top: 3px;
+  color: var(--amber-ink);
+}
+
+.art-tip__title {
+  font-weight: 700;
+  color: var(--wine);
+}
+
+.art-tip p {
+  font-size: 0.975rem;
+  line-height: 1.65;
+}
+
+.art-table {
+  overflow-x: auto;
+  border: 1px solid var(--blog-line);
+  border-radius: var(--radius-md);
+  background: var(--white);
+}
+
+.art-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.art-table th,
+.art-table td {
+  padding: 10px 14px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.art-table thead th,
+.art-table thead td {
+  background: color-mix(in srgb, var(--blush) 55%, var(--white));
+  color: var(--wine);
+  font-weight: 700;
+}
+
+.art-table tbody tr + tr {
+  border-top: 1px solid var(--blog-line);
+}
+
+.art-table tbody th {
+  font-weight: 650;
+}
+
+.art-figure img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
+/* ---------- FAQ, note and author ---------- */
+
+.art-faq__list {
+  display: grid;
+  gap: 8px;
+}
+
+.art-faq .faq-item__button {
+  font-size: 1rem;
+}
+
+.art-faq .faq-item__answer p {
+  font-size: 0.975rem;
+}
+
+.art-note {
+  margin-top: clamp(28px, 3vw, 40px);
+  padding: 14px 18px;
+  border: 1px dashed var(--blog-line);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--ink-muted);
+}
+
+.art-author {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(16px, 2vw, 24px);
+  margin-top: 20px;
+  padding: clamp(16px, 2vw, 22px);
+  border-color: var(--blog-line);
+}
+
+.art-author__photo {
+  width: 112px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: 40% 35%;
+  border-radius: var(--radius-md);
+}
+
+.art-author__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--amber-ink);
+}
+
+.art-author__name {
+  margin-top: 2px;
+  font-family: var(--font-serif);
+  font-size: var(--text-h3);
+  line-height: 1.2;
+  color: var(--wine);
+}
+
+.art-author__text > p:not(.art-author__name) {
+  margin: 6px 0 8px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ink-muted);
+}
+
+/* ---------- Related ---------- */
+
+.art-related {
+  padding-top: clamp(40px, 4.4vw, 64px);
+}
+
+.art-related .ebk-head {
+  margin-bottom: clamp(10px, 1vw, 14px);
+}
+
+/* ============ Responsive ============ */
+
+/* Below laptop width the contents box sits above the text. */
+@media (max-width: 1099.98px) {
+  .art-layout {
+    grid-template-columns: minmax(0, var(--art-measure));
+    gap: clamp(20px, 3vw, 28px);
+  }
+
+  .art-toc {
+    position: static;
+    grid-column: 1;
+    max-height: none;
+  }
+
+  .art-body {
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 899.98px) {
+  .art-cover img {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 699.98px) {
+  .art-cover img {
+    aspect-ratio: 3 / 2;
+    border-radius: var(--radius-md);
+  }
+
+  .art-body {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .art-tip {
+    padding: 14px 16px;
+  }
+
+  .art-table table {
+    font-size: 0.875rem;
+  }
+
+  .art-table th,
+  .art-table td {
+    padding: 8px 10px;
+  }
+
+  .art-author {
+    grid-template-columns: 80px minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .art-author__photo {
+    width: 80px;
+  }
+
+  .art-crumbs [aria-current] {
+    max-width: 22ch;
+  }
+}

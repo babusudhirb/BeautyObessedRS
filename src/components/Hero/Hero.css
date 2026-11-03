@@ -1,0 +1,510 @@
+/* The hero is a size container: everything inside is sized in cqw / cqh so the
+   collage scales as one piece with the stage rather than with the viewport.
+   Panel boxes and clip paths come from heroLayout.js.
+
+   The title copy is the exception for height: it scales with --hero-fit (the
+   height the first screen offers, set from Hero.jsx) through the --fh unit.
+   Sizing it from the stage's own height would feed back into that height. */
+
+.hero {
+  padding-top: 10px;
+}
+
+.hero__stage {
+  --fh: calc(var(--hero-fit, 720px) / 100);
+  position: relative;
+  container: hero / size;
+  /* Fill the first screen below the navbar, within limits set from the
+     measured width and title height (see heroLayout.js). */
+  height: clamp(var(--hero-min, 560px), calc(100vh - var(--nav-h) - 22px), var(--hero-max, 860px));
+  height: clamp(var(--hero-min, 560px), calc(100svh - var(--nav-h) - 22px), var(--hero-max, 860px));
+}
+
+.hero-panel {
+  position: absolute;
+  filter: drop-shadow(0 10px 20px rgb(122 31 61 / 0.1));
+}
+
+/* Invisible ruler: as tall as the space below the navbar on the first screen. */
+.hero__probe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: calc(100vh - var(--nav-h) - 22px);
+  height: calc(100svh - var(--nav-h) - 22px);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Nothing is shown until the first measurement has placed the panels. */
+.hero__stage:not([data-ready]) .hero-panel {
+  visibility: hidden;
+}
+
+.hero-panel__shape {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* ---------- A. Title panel ---------- */
+
+.hero-title {
+  position: absolute;
+  inset: 0;
+  background: var(--grad-title);
+}
+
+.hero-title__content {
+  width: 47.4cqw;
+  padding: clamp(18px, 5.6 * var(--fh), 56px) 0 clamp(10px, 2.4 * var(--fh), 16px) 4.9cqw;
+}
+
+.hero-title__eyebrow {
+  font-size: clamp(10.5px, 0.92cqw, 13px);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--wine);
+}
+
+.hero-title__headline {
+  margin-top: clamp(8px, 1.8 * var(--fh), 16px);
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(26px, min(3.95cqw, 6.5 * var(--fh)), 62px);
+  line-height: 1.09;
+  letter-spacing: -0.024em;
+  color: var(--ink);
+}
+
+/* Three fixed lines, as in the reference. */
+.hero-title__line {
+  display: block;
+  white-space: nowrap;
+}
+
+.hero-title__line--accent {
+  color: var(--wine);
+}
+
+.hero-title__copy {
+  max-width: 35cqw;
+  margin-top: clamp(10px, 2 * var(--fh), 20px);
+  font-size: clamp(14px, 1.22cqw, 17.5px);
+  line-height: 1.55;
+}
+
+.hero-title__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  margin-top: clamp(14px, 2.7 * var(--fh), 28px);
+}
+
+.hero-title__actions .btn {
+  min-height: clamp(42px, min(3.7cqw, 7.2 * var(--fh)), 52px);
+  padding-inline: clamp(18px, 2cqw, 30px);
+  font-size: clamp(13.5px, 1.1cqw, 15.5px);
+}
+
+/* ---------- B. Portrait panel ---------- */
+
+.hero-portrait__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Shows the wall mural on the left with Rachna, head and shoulders, in the
+     widest part of the panel on the right. */
+  object-position: 62% 50%;
+}
+
+/* ---------- C. Salon panel ---------- */
+
+.hero-salon {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-salon__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 10% 60%;
+}
+
+.hero-salon__label {
+  position: absolute;
+  left: 2.5cqw;
+  bottom: 6cqh;
+  width: clamp(196px, 21.5cqw, 300px);
+  padding: clamp(14px, 1.5cqw, 22px) clamp(16px, 1.7cqw, 24px);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  box-shadow: var(--shadow-raised);
+}
+
+.hero-salon__name {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(16px, 1.55cqw, 22px);
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+.hero-salon__copy {
+  margin: 6px 0 4px;
+  font-size: clamp(13px, 1.05cqw, 15px);
+  line-height: 1.45;
+}
+
+/* The podcast photograph, inset towards the right of the salon. */
+.hero-salon__podcast {
+  position: absolute;
+  right: 6.2cqw;
+  bottom: 6.4cqh;
+  display: block;
+  width: min(16.4cqw, 29cqh);
+  aspect-ratio: 1.04;
+  overflow: hidden;
+  border: 3px solid var(--white);
+  border-radius: 14px;
+  box-shadow: var(--shadow-raised);
+}
+
+.hero-salon__podcast img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 55% 36%;
+  transition: transform 0.45s var(--ease);
+}
+
+.hero-salon__podcast:hover img {
+  transform: scale(1.04);
+}
+
+.hero-salon__tag {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px 5px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  color: var(--wine);
+  font-size: 11.5px;
+  font-weight: 650;
+  line-height: 1;
+}
+
+/* ---------- Podcast greeting ---------- */
+
+/* A small glass card that appears beside the podcast image. It belongs to the
+   stage, not to the salon panel (whose outline would clip it), and its
+   position comes from popoverPlacement.js. */
+.hero-hint {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  max-width: min(308px, 66cqw);
+  padding: 9px 8px 9px 10px;
+  border: 1px solid rgb(122 31 61 / 0.5);
+  border-radius: 14px;
+  background: rgb(251 246 240 / 0.8);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  backdrop-filter: blur(14px) saturate(1.2);
+  box-shadow: var(--shadow-raised);
+  color: var(--wine);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition:
+    opacity 0.18s var(--ease),
+    transform 0.18s var(--ease),
+    visibility 0s 0.18s;
+}
+
+.hero-hint[data-open] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity 0.22s var(--ease),
+    transform 0.22s var(--ease),
+    visibility 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-hint {
+    transform: none;
+  }
+}
+
+.hero-hint__icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--blush);
+}
+
+.hero-hint__text {
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
+.hero-hint__close {
+  position: relative;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--wine);
+  cursor: pointer;
+}
+
+.hero-hint__close:hover {
+  background: var(--blush);
+}
+
+/* A larger hit area for fingers, without making the button look bigger. */
+.hero-hint__close::after {
+  content: '';
+  position: absolute;
+  inset: -9px;
+}
+
+/* Phones: a narrower card without the icon, so it fits above the image
+   without reaching the salon sign or the e-book button. */
+@container hero (width < 420px) {
+  .hero-hint {
+    max-width: 68cqw;
+    padding-left: 14px;
+  }
+
+  .hero-hint__icon {
+    display: none;
+  }
+
+  .hero-hint__text {
+    font-size: 13px;
+  }
+}
+
+/* ---------- D. E-book panel ---------- */
+
+.hero-ebook {
+  position: absolute;
+  inset: 0;
+  background: var(--grad-ebook);
+  color: var(--white);
+}
+
+/* The book photograph sits bottom-right at its own proportions; its left and
+   top edges dissolve into the panel gradient. */
+.hero-ebook__img {
+  position: absolute;
+  right: -7%;
+  bottom: 0;
+  width: auto;
+  max-width: none;
+  height: min(90%, 25cqw);
+  -webkit-mask-image: linear-gradient(to right, transparent 19%, #000 37%),
+    linear-gradient(to bottom, transparent 0%, #000 13%);
+  mask-image: linear-gradient(to right, transparent 19%, #000 37%),
+    linear-gradient(to bottom, transparent 0%, #000 13%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+.hero-ebook__text {
+  position: absolute;
+  left: 17.5%;
+  bottom: 8%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero-ebook__heading {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  color: var(--white);
+}
+
+.hero-ebook__kicker {
+  display: block;
+  font-weight: 300;
+  font-size: clamp(15px, 1.7cqw, 25px);
+  line-height: 1.15;
+}
+
+.hero-ebook__title {
+  display: block;
+  margin-top: 0.16em;
+  font-size: clamp(21px, 2.4cqw, 36px);
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+}
+
+.hero-ebook__title span {
+  display: block;
+}
+
+.hero-ebook__text .btn {
+  margin-top: clamp(10px, 2.2cqh, 18px);
+  padding-inline: clamp(14px, 1.35cqw, 18px);
+}
+
+/* ---------- Compact arrangement (tablet and mobile) ---------- */
+/* Same threshold as COMPACT_BELOW in heroLayout.js. */
+
+@container hero (width < 900px) {
+  .hero-title__content {
+    width: 100cqw;
+    padding: clamp(18px, 5cqw, 36px) clamp(16px, 5cqw, 40px) clamp(16px, 4.4cqw, 30px);
+  }
+
+  .hero-title__eyebrow {
+    font-size: clamp(10px, 2.9cqw, 13px);
+    letter-spacing: 0.08em;
+  }
+
+  .hero-title__headline {
+    margin-top: 8px;
+    font-size: clamp(24px, 7.3cqw, 52px);
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+
+  .hero-title__line {
+    display: inline;
+    white-space: normal;
+  }
+
+  .hero-title__copy {
+    max-width: 58ch;
+    margin-top: 10px;
+    font-size: clamp(14px, 3.9cqw, 17px);
+  }
+
+  .hero-title__actions {
+    margin-top: 14px;
+  }
+
+  .hero-title__actions .btn {
+    flex: 1 1 auto;
+    min-height: 46px;
+    padding-inline: 18px;
+    font-size: 14px;
+  }
+
+  .hero-portrait__img {
+    object-position: 90% 50%;
+  }
+
+  .hero-salon__label {
+    left: clamp(10px, 3cqw, 24px);
+    bottom: clamp(10px, 3cqw, 24px);
+    width: clamp(158px, 47cqw, 290px);
+    padding: clamp(12px, 3cqw, 20px) clamp(13px, 3.4cqw, 22px);
+  }
+
+  .hero-salon__name {
+    font-size: clamp(13.5px, 3.8cqw, 21px);
+    white-space: nowrap;
+  }
+
+  .hero-salon__copy {
+    font-size: clamp(12.5px, 3.3cqw, 15px);
+  }
+
+  .hero-salon__podcast {
+    right: clamp(10px, 3.4cqw, 28px);
+    bottom: clamp(10px, 3.4cqw, 28px);
+    width: clamp(104px, 30cqw, 220px);
+    aspect-ratio: 1;
+  }
+
+  /* The book sits above the copy here, so the two never overlap. */
+  .hero-ebook__img {
+    top: 0;
+    right: 0;
+    bottom: auto;
+    height: 66%;
+    -webkit-mask-image: linear-gradient(to right, transparent 20%, #000 37%),
+      linear-gradient(to top, transparent 0%, #000 26%);
+    mask-image: linear-gradient(to right, transparent 20%, #000 37%),
+      linear-gradient(to top, transparent 0%, #000 26%);
+  }
+
+  .hero-ebook__text {
+    left: 10%;
+    right: 5%;
+    bottom: 6%;
+  }
+
+  .hero-ebook__kicker {
+    font-size: clamp(11.5px, 3.1cqw, 17px);
+  }
+
+  .hero-ebook__title {
+    font-size: clamp(14px, 4cqw, 25px);
+  }
+
+  .hero-ebook__title span {
+    display: inline;
+  }
+
+  /* A slimmer pill, with the tap target extended to 48px. */
+  .hero-ebook__text .btn {
+    position: relative;
+    min-height: 36px;
+    margin-top: 8px;
+    padding-inline: 16px;
+  }
+
+  .hero-ebook__text .btn::after {
+    content: '';
+    position: absolute;
+    inset: -6px 0;
+  }
+
+  .hero-salon__tag {
+    left: 6px;
+    bottom: 6px;
+    padding: 4px 8px 4px 6px;
+    font-size: 10.5px;
+  }
+}
+
+/* Tablet: the two title buttons sit side by side at their natural width. */
+@container hero (width >= 520px) and (width < 900px) {
+  .hero-title__actions .btn {
+    flex: 0 0 auto;
+  }
+}

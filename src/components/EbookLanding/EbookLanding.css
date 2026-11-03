@@ -1,0 +1,1637 @@
+/* The e-book landing page (/ebook). Colours, type and radii come from
+   styles/tokens.css; this file adds the page's layout and its own panels. */
+
+.ebk {
+  --ebk-gutter: clamp(16px, 3.5vw, 50px);
+  --ebk-max: 1340px;
+  /* Pale blush used by the hero panel and the collection banner */
+  --ebk-panel: linear-gradient(
+    112deg,
+    color-mix(in srgb, var(--blush) 56%, var(--white)) 0%,
+    color-mix(in srgb, var(--blush) 84%, var(--ivory)) 100%
+  );
+}
+
+.ebk-container {
+  width: min(
+    100% - 2 * max(var(--ebk-gutter), env(safe-area-inset-left), env(safe-area-inset-right)),
+    var(--ebk-max)
+  );
+  margin-inline: auto;
+}
+
+.ebk-section {
+  padding-top: clamp(20px, 2.1vw, 30px);
+}
+
+.ebk-section--tight {
+  padding-top: clamp(12px, 1.3vw, 18px);
+}
+
+/* ---------- Shared pieces ---------- */
+
+.ebk .eyebrow {
+  color: var(--amber-ink);
+}
+
+/* Section title, followed by a short gold rule */
+.ebk-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px 24px;
+  margin-bottom: clamp(10px, 1.1vw, 16px);
+}
+
+.ebk-head--inline {
+  justify-content: flex-start;
+}
+
+.ebk-head__title {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.ebk-head__title::after {
+  content: '';
+  flex: none;
+  width: 44px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.ebk-head__aside {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: var(--text-sm);
+}
+
+.ebk-card-title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--text-h3);
+  line-height: 1.2;
+  letter-spacing: -0.012em;
+  color: var(--wine);
+}
+
+.ebk-card-copy {
+  margin-top: 4px;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+
+.ebk-line {
+  display: block;
+}
+
+/* Tick list */
+.ebk-checks {
+  display: grid;
+  gap: 6px;
+}
+
+.ebk-checks li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.4;
+}
+
+.ebk-check {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  margin-top: 0.14em;
+  border-radius: 50%;
+  background: var(--amber);
+  color: var(--white);
+}
+
+/* ---------- 1. Hero ---------- */
+
+/* The grid is a size container: type and spacing inside it are set in cqw so
+   the composition keeps its proportions as the page narrows. */
+.ebk-hero {
+  padding-top: 6px;
+}
+
+.ebk-hero__grid {
+  container: ebk-hero / inline-size;
+  display: grid;
+  grid-template-columns: minmax(0, 48.6fr) minmax(0, 51.4fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 4px;
+  /* As tall as the screen allows, from the old minimum up to the height at
+     which the books photograph would start to lose its outer books (0.44 of
+     the hero's width). The grid is its own size container, so cqw here is
+     the viewport width. */
+  --ebk-hero-cap: calc(0.44 * min(100cqw - 2 * var(--ebk-gutter), var(--ebk-max)));
+  min-height: max(36cqw, min(100svh - var(--nav-h) - 22px, var(--ebk-hero-cap)));
+  min-height: round(up, max(36cqw, min(100svh - var(--nav-h) - 22px, var(--ebk-hero-cap))), 1px);
+}
+
+.ebk-hero__panel {
+  position: relative;
+  z-index: 1;
+  grid-column: 1;
+  grid-row: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2.6cqw 0 1.6cqw 3.05cqw;
+  border-radius: var(--radius-md);
+  background: var(--ebk-panel);
+}
+
+/* The right-hand quarter of the panel belongs to the author's photograph. */
+.ebk-hero__copy {
+  width: 75%;
+}
+
+.ebk-hero__title {
+  margin-top: 1.05cqw;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 3.62cqw, 3.1rem);
+  line-height: 1.09;
+  letter-spacing: -0.02em;
+  color: var(--wine);
+}
+
+/* Three set lines, as in the design */
+.ebk-hero__line {
+  display: block;
+  white-space: nowrap;
+}
+
+.ebk-hero__title em {
+  font-style: italic;
+  color: color-mix(in srgb, var(--wine) 40%, var(--rose));
+}
+
+.ebk-hero__text {
+  margin-top: 1.05cqw;
+  font-size: clamp(0.9375rem, 1.2cqw, 1.03rem);
+  line-height: 1.55;
+}
+
+.ebk-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px clamp(10px, 1.3cqw, 18px);
+  margin-top: 1.65cqw;
+}
+
+.ebk-hero__actions .btn {
+  min-height: clamp(42px, 3.4cqw, 46px);
+  padding-inline: clamp(16px, 1.95cqw, 28px);
+  font-size: clamp(0.8125rem, 1.07cqw, 0.92rem);
+}
+
+.ebk-hero__benefits {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  gap: clamp(10px, 1cqw, 14px) clamp(18px, 3.4cqw, 48px);
+  margin-top: 1.55cqw;
+}
+
+.ebk-benefit {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: clamp(0.78rem, 1.02cqw, 0.85rem);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--wine);
+}
+
+.ebk-benefit svg {
+  flex: none;
+  color: var(--amber);
+}
+
+/* The author's photograph reaches out of the panel, over the edge of the
+   books photograph, and sits level with the collection strip. */
+.ebk-hero__author {
+  position: absolute;
+  left: 77%;
+  bottom: 1.05cqw;
+  width: 37.7%;
+  aspect-ratio: 162 / 167;
+  overflow: hidden;
+  border: 3px solid var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-raised);
+}
+
+.ebk-hero__author img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 34% 50%;
+}
+
+.ebk-hero__author figcaption {
+  position: absolute;
+  inset: auto 0 0;
+  display: flex;
+  flex-direction: column;
+  padding: 34px 12px 10px 14px;
+  background: linear-gradient(to top, rgb(43 18 32 / 0.86) 30%, transparent);
+  color: var(--white);
+  line-height: 1.35;
+}
+
+.ebk-hero__author strong {
+  font-size: clamp(0.8125rem, 1.08cqw, 0.9375rem);
+  font-weight: 500;
+}
+
+.ebk-hero__author span {
+  font-size: clamp(0.75rem, 0.95cqw, 0.8125rem);
+}
+
+.ebk-hero__books {
+  position: relative;
+  grid-column: 2;
+  grid-row: 1;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+.ebk-hero__books img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 46%;
+}
+
+/* Collection strip. Its left edge leaves room for the author's photograph. */
+.ebk-hero__strip {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 0.9cqw, 13px);
+  margin-left: 14.2%;
+  padding: clamp(14px, 1.95cqw, 28px) clamp(12px, 1.2cqw, 17px) clamp(14px, 1.95cqw, 28px) clamp(14px, 1.4cqw, 20px);
+  border-radius: var(--radius-md);
+  background: linear-gradient(100deg, var(--wine) 42%, var(--rose-deep) 118%);
+  color: var(--white);
+}
+
+.ebk-hero__gift {
+  flex: none;
+  width: clamp(30px, 2.7cqw, 37px);
+  height: auto;
+  padding-right: clamp(10px, 0.9cqw, 13px);
+  border-right: 1px solid rgb(251 246 240 / 0.3);
+  box-sizing: content-box;
+  color: var(--honey);
+}
+
+.ebk-hero__strip-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.3;
+}
+
+.ebk-hero__strip-text strong {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(1rem, 1.46cqw, 1.24rem);
+  letter-spacing: -0.015em;
+}
+
+.ebk-hero__strip-text span {
+  font-size: clamp(0.8125rem, 1.12cqw, 0.9375rem);
+}
+
+.ebk-hero__strip .btn {
+  flex: none;
+  min-height: clamp(40px, 3.3cqw, 46px);
+  padding-inline: clamp(13px, 1.3cqw, 19px);
+}
+
+/* ---------- 2. Choose your guide ---------- */
+
+.ebk-arrows {
+  display: flex;
+  gap: 6px;
+}
+
+.ebk-arrows button {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1.5px solid color-mix(in srgb, var(--amber) 55%, var(--white));
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--wine);
+  cursor: pointer;
+  transition:
+    background-color 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+
+.ebk-arrows button:hover:not(:disabled) {
+  background: var(--wine);
+  color: var(--white);
+}
+
+.ebk-arrows button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* A larger hit area for fingers */
+.ebk-arrows button::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+}
+
+.ebk-guides {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 1.9vw, 26px);
+}
+
+.guide {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.guide__media {
+  position: relative;
+  aspect-ratio: 2.06;
+  overflow: hidden;
+  background: var(--blush);
+}
+
+.guide__backdrop {
+  position: absolute;
+  inset: -14%;
+  width: 128%;
+  max-width: none;
+  height: 128%;
+  object-fit: cover;
+  object-position: 50% 32%;
+  filter: blur(13px);
+}
+
+/* The whole cover, upright, with its sides melting into the backdrop */
+.guide__cover {
+  position: absolute;
+  top: -8%;
+  left: 50%;
+  width: auto;
+  max-width: none;
+  height: 120%;
+  transform: translateX(-50%);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 16%, #000 84%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 16%, #000 84%, transparent);
+}
+
+.guide__badge {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--grad-honey);
+  color: var(--ink);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.guide__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: clamp(10px, 1.1vw, 14px) clamp(16px, 2vw, 28px) clamp(16px, 1.5vw, 20px);
+}
+
+.guide__title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: var(--text-h3);
+  line-height: 1.2;
+  letter-spacing: -0.012em;
+  color: var(--wine);
+}
+
+.guide__copy {
+  max-width: 31ch;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.guide .ebk-checks {
+  flex: 1;
+  align-content: start;
+  margin: 8px 0 14px;
+}
+
+.guide .btn {
+  min-height: 42px;
+}
+
+/* ---------- 3. Complete Collection ---------- */
+
+.bundle {
+  position: relative;
+  display: grid;
+  grid-template-columns: 38% minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: clamp(18px, 2.6vw, 40px);
+  min-height: clamp(210px, 18.5vw, 250px);
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--ebk-panel);
+}
+
+.bundle__visual {
+  position: relative;
+  align-self: stretch;
+}
+
+.bundle__visual img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 82%;
+  -webkit-mask-image: linear-gradient(to right, #000 93%, transparent);
+  mask-image: linear-gradient(to right, #000 93%, transparent);
+}
+
+.bundle__text {
+  padding-block: 16px;
+}
+
+.bundle__tag {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 5px;
+  background: var(--honey);
+  color: var(--ink);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.bundle__title {
+  margin-top: 8px;
+  line-height: 1.08;
+}
+
+.bundle__copy {
+  max-width: 44ch;
+  margin: 8px 0 14px;
+  line-height: 1.45;
+}
+
+.bundle__includes {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  margin-block: 18px;
+  padding: 0 clamp(22px, 4vw, 60px) 0 clamp(20px, 3vw, 44px);
+  border-left: 1px solid rgb(122 31 61 / 0.12);
+}
+
+.bundle__includes .ebk-checks {
+  gap: 10px;
+}
+
+.bundle__note {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 190px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--wine);
+}
+
+.bundle__note svg {
+  flex: none;
+  color: var(--amber);
+}
+
+/* ---------- 4. Inside every e-book ---------- */
+
+.inside {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(10px, 1.1vw, 14px) clamp(14px, 1.7vw, 22px);
+}
+
+.inside__spread {
+  position: relative;
+  min-height: clamp(170px, 14.6vw, 202px);
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.inside__spread img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 24%;
+}
+
+.inside__features {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(6px, 0.8vw, 10px);
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 8px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.feature svg {
+  color: var(--amber);
+}
+
+.feature__title {
+  margin-top: 8px;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--wine);
+}
+
+.feature__copy {
+  margin-top: 6px;
+  font-size: 0.875rem;
+  line-height: 1.35;
+  color: var(--ink-muted);
+}
+
+/* Sample chapter and bonuses share one card shape: icon, heading, then a row */
+.sample,
+.bonuses {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 12px clamp(14px, 1.5vw, 20px);
+  padding: clamp(14px, 1.4vw, 18px) clamp(16px, 2vw, 26px) clamp(16px, 1.5vw, 20px);
+  border-radius: 12px;
+}
+
+.sample__icon {
+  color: var(--amber);
+}
+
+.bonuses__icon {
+  color: var(--rose-deep);
+}
+
+.sample__form,
+.bonuses__list {
+  grid-column: 1 / -1;
+}
+
+.sample__fields {
+  display: flex;
+  gap: 12px;
+}
+
+.sample__input {
+  flex: 1;
+  min-width: 0;
+  height: 46px;
+  padding: 0 20px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  font-size: 0.9375rem;
+  transition: border-color 0.2s var(--ease);
+}
+
+.sample__input::placeholder {
+  color: var(--ink-muted);
+  opacity: 1;
+}
+
+.sample__input:hover,
+.sample__input:focus-visible,
+.sample__input[aria-invalid='true'] {
+  border-color: var(--wine);
+}
+
+.sample__fields .btn {
+  min-height: 46px;
+  padding-inline: clamp(18px, 2vw, 28px);
+}
+
+.sample__fields .btn:disabled {
+  cursor: progress;
+  opacity: 0.7;
+}
+
+.sample__message {
+  margin-top: 8px;
+  padding-inline: 20px;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--wine);
+}
+
+.sample__message[data-status='idle'],
+.sample__message[data-status='submitting'] {
+  margin-top: 0;
+}
+
+.bonuses__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 16px;
+  padding-top: 6px;
+}
+
+.bonuses__list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8125rem;
+  line-height: 1.35;
+}
+
+.bonuses__list svg {
+  flex: none;
+  color: var(--amber);
+}
+
+/* ---------- 5. Feature stage: YouTube beside the Salon Expert Guide ---------- */
+
+/* Two equal panels; on laptops and desktops the pair is about one screen tall. */
+.stage {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 1.2vw, 18px);
+  min-height: calc(100svh - var(--nav-h) - 60px);
+  min-height: round(up, calc(100svh - var(--nav-h) - 60px), 1px);
+}
+
+.stage__panel {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.3vw, 18px);
+  min-width: 0;
+  padding: clamp(20px, 2.4vw, 36px);
+  border-radius: var(--radius-md);
+}
+
+.stage__panel--videos {
+  background: var(--ebk-panel);
+}
+
+.ebk-head--stack {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  margin-bottom: 0;
+}
+
+/* Three large thumbnails stacked to fill the panel */
+.videos {
+  flex: 1;
+  display: grid;
+  grid-template-rows: repeat(3, minmax(132px, 1fr));
+  gap: clamp(10px, 1vw, 14px);
+}
+
+.videos > li {
+  display: flex;
+  min-height: 0;
+}
+
+.video {
+  position: relative;
+  display: block;
+  flex: 1;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--ink);
+  color: var(--white);
+}
+
+.video img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s var(--ease);
+}
+
+.video:hover img {
+  transform: scale(1.04);
+}
+
+/* Darkens the left of the thumbnail, where the title sits */
+.video::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, rgb(43 18 32 / 0.82) 0%, rgb(43 18 32 / 0.5) 46%, rgb(43 18 32 / 0.08) 100%);
+}
+
+.video__title {
+  position: absolute;
+  z-index: 2;
+  bottom: clamp(14px, 1.6vw, 22px);
+  left: clamp(16px, 2vw, 26px);
+  max-width: 64%;
+}
+
+.video__line {
+  display: block;
+  font-size: clamp(0.875rem, 1.05vw, 1rem);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.video__line--lead {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 1.9vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.12;
+}
+
+/* On the wide cards the play button sits to the right, clear of the title */
+.video__play {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: 7%;
+  display: grid;
+  place-items: center;
+  width: clamp(48px, 4.2vw, 60px);
+  aspect-ratio: 1;
+  padding-left: 3px;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--wine);
+  box-shadow: 0 10px 22px -10px rgb(43 18 32 / 0.75);
+  transform: translateY(-50%);
+  transition: transform 0.2s var(--ease);
+}
+
+.video:hover .video__play {
+  transform: translateY(-50%) scale(1.06);
+}
+
+.video__time {
+  position: absolute;
+  z-index: 2;
+  right: 10px;
+  bottom: 10px;
+  padding: 3px 7px;
+  border-radius: 5px;
+  background: rgb(0 0 0 / 0.78);
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.3;
+}
+
+/* Salon Expert Guide: the dark professional panel, centred */
+.stage__panel--salon {
+  align-items: center;
+  justify-content: center;
+  background: var(--espresso);
+  color: var(--ivory);
+  text-align: center;
+}
+
+.salon__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--honey-light);
+}
+
+.salon__eyebrow::before,
+.salon__eyebrow::after {
+  content: '';
+  flex: none;
+  width: clamp(24px, 3.4vw, 56px);
+  height: 1px;
+  background: var(--honey);
+}
+
+.salon__title {
+  margin-top: -6px;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--text-h2);
+  line-height: 1.12;
+  letter-spacing: -0.012em;
+  color: var(--honey-light);
+}
+
+/* The book at its own proportions, sized to what the screen height allows.
+   Its edges dissolve into the panel; the book itself sits well inside them. */
+.salon__book {
+  width: clamp(240px, (100svh - 470px) * 1.276, 520px);
+  max-width: 100%;
+}
+
+.salon__book img {
+  width: 100%;
+  height: auto;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 9%, #000 91%, transparent),
+    linear-gradient(to bottom, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 9%, #000 91%, transparent),
+    linear-gradient(to bottom, transparent, #000 7%, #000 93%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+.salon__copy {
+  max-width: 46ch;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.stage__panel--salon .ebk-checks {
+  width: fit-content;
+  max-width: 100%;
+  font-size: 0.9375rem;
+  text-align: left;
+}
+
+.stage__panel--salon .ebk-check {
+  background: var(--honey);
+  color: var(--espresso);
+}
+
+.stage__panel--salon .btn {
+  min-height: 44px;
+}
+
+.stage__panel--salon :focus-visible {
+  outline-color: var(--honey-light);
+}
+
+/* ---------- 6. About Rachna ---------- */
+
+.ebk-about {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 64px);
+}
+
+/* The whole mural stays in view with Rachna on the right of the frame. */
+.ebk-about__photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: 86% 50%;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.ebk-about__title {
+  font-size: clamp(2rem, 1.4rem + 2vw, 3rem);
+  line-height: 1.05;
+}
+
+.ebk-about__bio {
+  max-width: 52ch;
+  margin: 14px 0 10px;
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  line-height: 1.6;
+}
+
+.ebk-about .arrow-link {
+  font-size: var(--text-base);
+}
+
+.ebk-quote {
+  position: relative;
+  max-width: 30rem;
+  margin-top: clamp(18px, 2.2vw, 30px);
+  padding: 20px 20px 18px 22px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--blush) 88%, var(--rose));
+  color: var(--wine);
+}
+
+/* Opening mark, top left; a paler closing mark, bottom right */
+.ebk-quote::before,
+.ebk-quote::after {
+  position: absolute;
+  font-family: var(--font-serif);
+  font-size: 4.5rem;
+  line-height: 1;
+}
+
+.ebk-quote::before {
+  content: '\201C';
+  top: 12px;
+  left: 14px;
+}
+
+.ebk-quote::after {
+  content: '\201D';
+  right: 12px;
+  bottom: -22px;
+  opacity: 0.22;
+}
+
+.ebk-quote blockquote {
+  padding-left: 46px;
+  font-family: var(--font-serif);
+  font-size: clamp(1.05rem, 0.9rem + 0.5vw, 1.25rem);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.ebk-quote figcaption {
+  margin-top: 8px;
+  padding-right: 34px;
+  font-size: 0.9375rem;
+  text-align: right;
+}
+
+/* ---------- 7. Frequently asked questions ---------- */
+
+.ebk-faq__title {
+  margin-bottom: 10px;
+}
+
+.ebk-faq__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 6px clamp(12px, 1.6vw, 22px);
+}
+
+.ebk-faq__column {
+  display: grid;
+  gap: 6px;
+}
+
+/* A compact version of the homepage accordion */
+.ebk-faq .faq-item {
+  border-radius: 8px;
+}
+
+.ebk-faq .faq-item__button {
+  min-height: 40px;
+  padding: 6px 12px 6px 14px;
+  font-size: 0.875rem;
+}
+
+.ebk-faq .faq-item__icon {
+  width: 16px;
+  height: 16px;
+}
+
+.ebk-faq .faq-item__answer p {
+  padding: 0 14px 12px;
+  font-size: 0.875rem;
+}
+
+@media (pointer: coarse) {
+  .ebk-faq .faq-item__button {
+    min-height: 44px;
+  }
+}
+
+/* ---------- 8. What readers say ---------- */
+
+.ebk-reviews__title {
+  margin-bottom: 10px;
+}
+
+.ebk-reviews {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(10px, 1.4vw, 18px);
+}
+
+.review {
+  padding: 10px 18px 12px;
+  border-radius: 12px;
+}
+
+.review__stars {
+  display: flex;
+  gap: 2px;
+  color: var(--amber);
+}
+
+.review__quote {
+  margin-top: 6px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.review__name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--wine);
+}
+
+.review__name::before {
+  content: '';
+  width: 20px;
+  height: 1.5px;
+  background: var(--rose);
+}
+
+/* ---------- 9. Closing strip ---------- */
+
+.ebk-cta {
+  margin-top: clamp(16px, 1.8vw, 26px);
+  border-bottom: 1px solid rgb(251 246 240 / 0.16);
+  background: color-mix(in srgb, var(--wine) 90%, var(--ink));
+  color: var(--ivory);
+}
+
+.ebk-cta__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 32px;
+  padding-block: clamp(14px, 1.4vw, 18px);
+}
+
+.ebk-cta__title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.1rem);
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+}
+
+.ebk-cta__side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.ebk-cta .btn {
+  min-height: 36px;
+  padding-inline: clamp(28px, 4.4vw, 64px);
+  color: var(--wine);
+}
+
+.ebk-cta__trust {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px clamp(16px, 2.4vw, 36px);
+  font-size: 0.8125rem;
+}
+
+.ebk-cta__trust li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ebk-cta :focus-visible {
+  outline-color: var(--ivory);
+}
+
+@media (pointer: coarse) {
+  .ebk-cta .btn,
+  .guide .btn {
+    min-height: 44px;
+  }
+}
+
+/* ============ Responsive ============ */
+
+/* Narrower than a laptop: the guides become a row that swipes sideways, and
+   the feature stage stacks, videos first, with the thumbnails three across. */
+@media (max-width: 979.98px) {
+  .ebk-guides {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: min(82%, 350px);
+    margin-inline: calc(-1 * var(--ebk-gutter));
+    padding: 0 var(--ebk-gutter) 14px;
+    overflow-x: auto;
+    scroll-padding-inline: var(--ebk-gutter);
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: var(--blush-deep) transparent;
+  }
+
+  .guide {
+    scroll-snap-align: start;
+  }
+
+  .stage {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  .videos {
+    flex: none;
+    grid-template-rows: none;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .videos > li {
+    display: block;
+  }
+
+  .video {
+    aspect-ratio: 4 / 5;
+  }
+
+  .video__title {
+    right: 14px;
+    left: 14px;
+    max-width: none;
+  }
+
+  .video__line--lead {
+    font-size: 1.2rem;
+  }
+
+  .video__line {
+    font-size: 0.8125rem;
+  }
+
+  /* Upright cards: the play button moves to the centre, above the title */
+  .video__play {
+    top: 40%;
+    right: auto;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .video:hover .video__play {
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+}
+
+/* One column: the hero stacks, with the author's photograph inside the panel */
+@media (max-width: 919.98px) {
+  .ebk-hero__grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    gap: 8px;
+    min-height: 0;
+  }
+
+  .ebk-hero__panel {
+    grid-column: auto;
+    grid-row: auto;
+    padding: clamp(20px, 4.2cqw, 34px);
+  }
+
+  .ebk-hero__copy {
+    width: 60%;
+  }
+
+  .ebk-hero__title {
+    margin-top: 10px;
+    font-size: clamp(1.75rem, 5.7cqw, 2.9rem);
+  }
+
+  .ebk-hero__text {
+    margin-top: 12px;
+    font-size: 1rem;
+  }
+
+  .ebk-hero__actions {
+    margin-top: 18px;
+  }
+
+  .ebk-hero__actions .btn {
+    min-height: 46px;
+    padding-inline: 22px;
+    font-size: 0.875rem;
+  }
+
+  .ebk-hero__benefits {
+    margin-top: 18px;
+  }
+
+  .ebk-benefit {
+    font-size: 0.8125rem;
+  }
+
+  .ebk-hero__author {
+    top: clamp(20px, 4.2cqw, 34px);
+    right: clamp(20px, 4.2cqw, 34px);
+    bottom: clamp(20px, 4.2cqw, 34px);
+    left: auto;
+    width: 33%;
+    aspect-ratio: auto;
+  }
+
+  .ebk-hero__author strong {
+    font-size: 0.875rem;
+  }
+
+  .ebk-hero__author span {
+    font-size: 0.8125rem;
+  }
+
+  .ebk-hero__books {
+    grid-column: auto;
+    grid-row: auto;
+    aspect-ratio: 1.87;
+  }
+
+  .ebk-hero__strip {
+    grid-column: auto;
+    grid-row: auto;
+    gap: 16px;
+    margin-left: 0;
+    padding: 16px 20px;
+  }
+
+  .ebk-hero__gift {
+    width: 36px;
+    padding-right: 16px;
+  }
+
+  .ebk-hero__strip-text strong {
+    font-size: 1.125rem;
+  }
+
+  .ebk-hero__strip-text span {
+    font-size: 0.9375rem;
+  }
+
+  .ebk-hero__strip .btn {
+    min-height: 44px;
+    padding-inline: 22px;
+  }
+
+  /* Collection: picture on top, then the offer beside what it includes */
+  .bundle {
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 0;
+    min-height: 0;
+  }
+
+  .bundle__visual {
+    grid-column: 1 / -1;
+    aspect-ratio: 2.1;
+  }
+
+  .bundle__visual img {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .bundle__text {
+    padding: 18px clamp(18px, 3vw, 28px) 20px;
+  }
+
+  .inside {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .inside__spread {
+    min-height: 0;
+    aspect-ratio: 2.5;
+  }
+}
+
+/* Tablet: About stacks, with the whole photograph across the top */
+@media (max-width: 859.98px) {
+  .ebk-about {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ebk-about__photo {
+    aspect-ratio: 16 / 9;
+    object-position: 90% 50%;
+  }
+
+  .ebk-reviews {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 639.98px) {
+  /* Titles wrap on phones, so the rule beside them is dropped */
+  .ebk-head__title::after {
+    content: none;
+  }
+
+  /* Phones: a compact hero that fits the first screen. The copy runs the full
+     width, the benefits sit beside the author's photograph, and the books and
+     the collection strip follow underneath. */
+  .ebk-hero__grid {
+    gap: 6px;
+  }
+
+  .ebk-hero__panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+    column-gap: 12px;
+    padding: 16px;
+  }
+
+  .ebk-hero__copy {
+    display: contents;
+  }
+
+  .ebk-hero__copy > :not(.ebk-hero__benefits) {
+    grid-column: 1 / -1;
+  }
+
+  .ebk-hero__title {
+    margin-top: 8px;
+    font-size: clamp(1.6rem, 7.4cqw, 1.85rem);
+  }
+
+  .ebk-hero__line {
+    white-space: normal;
+  }
+
+  .ebk-hero__text {
+    margin-top: 8px;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  .ebk-hero__actions {
+    flex-wrap: nowrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .ebk-hero__actions .btn {
+    flex: 1 1 auto;
+    min-height: 44px;
+    padding-inline: 10px;
+    font-size: 0.8125rem;
+  }
+
+  .ebk-hero__benefits {
+    grid-column: 1;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: center;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .ebk-benefit {
+    gap: 8px;
+    font-size: 0.78rem;
+  }
+
+  .ebk-benefit svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .ebk-benefit .ebk-line {
+    display: inline;
+  }
+
+  .ebk-hero__author {
+    position: relative;
+    inset: auto;
+    grid-column: 2;
+    width: auto;
+    min-height: 132px;
+    aspect-ratio: auto;
+    margin-top: 14px;
+  }
+
+  .ebk-hero__author img {
+    position: absolute;
+    inset: 0;
+    object-position: 34% 30%;
+  }
+
+  .ebk-hero__author figcaption {
+    padding: 24px 8px 7px 9px;
+  }
+
+  .ebk-hero__author strong,
+  .ebk-hero__author span {
+    font-size: 0.75rem;
+  }
+
+  .ebk-hero__books {
+    aspect-ratio: 1.8;
+  }
+
+  .ebk-hero__strip {
+    gap: 10px;
+    padding: 12px 12px 12px 14px;
+  }
+
+  .ebk-hero__gift {
+    width: 26px;
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  .ebk-hero__strip-text strong {
+    font-size: 0.9375rem;
+  }
+
+  .ebk-hero__strip-text span {
+    font-size: 0.75rem;
+  }
+
+  .ebk-hero__strip .btn {
+    min-height: 44px;
+    padding-inline: 12px;
+    font-size: 0.8125rem;
+  }
+
+  .bundle {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .bundle__visual {
+    aspect-ratio: 1.7;
+  }
+
+  .bundle__text .btn {
+    width: 100%;
+  }
+
+  .bundle__includes {
+    margin: 0 18px 20px;
+    padding: 18px 0 0;
+    border-top: 1px solid rgb(122 31 61 / 0.12);
+    border-left: 0;
+  }
+
+  .bundle__note {
+    max-width: none;
+  }
+
+  .inside__spread {
+    aspect-ratio: 2.1;
+  }
+
+  .inside__features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sample__fields {
+    flex-direction: column;
+  }
+
+  .sample__input {
+    flex: none;
+  }
+
+  .bonuses__list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* The eyebrow keeps to one line; its rules are dropped */
+  .salon__eyebrow {
+    letter-spacing: 0.08em;
+  }
+
+  .salon__eyebrow::before,
+  .salon__eyebrow::after {
+    content: none;
+  }
+
+  /* Videos: a swipeable row inside their panel */
+  .videos {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: min(84%, 300px);
+    padding-bottom: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: var(--blush-deep) transparent;
+  }
+
+  .videos > li {
+    scroll-snap-align: start;
+  }
+
+  .video {
+    aspect-ratio: 1.45;
+  }
+
+  .video__play {
+    top: 38%;
+  }
+
+  .ebk-about__photo {
+    aspect-ratio: 16 / 10;
+  }
+
+  .ebk-faq__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ebk-faq .faq-item__button {
+    min-height: 44px;
+  }
+
+  .ebk-cta__inner,
+  .ebk-cta__side {
+    align-items: stretch;
+  }
+
+  .ebk-cta__inner {
+    flex-direction: column;
+  }
+
+  .ebk-cta__trust {
+    justify-content: flex-start;
+  }
+}
+
+/* The narrowest phones: a little more room for the benefit labels and the
+   collection title, so the whole hero still fits the first screen. */
+@media (max-width: 379.98px) {
+  .ebk-hero__panel {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.66fr);
+    column-gap: 10px;
+    padding: 14px;
+  }
+
+  .ebk-hero__text {
+    font-size: 0.875rem;
+  }
+
+  .ebk-benefit {
+    font-size: 0.75rem;
+  }
+
+  .ebk-hero__books {
+    aspect-ratio: 1.95;
+  }
+
+  .ebk-hero__strip {
+    gap: 8px;
+    padding-inline: 12px 10px;
+  }
+
+  .ebk-hero__strip-text strong {
+    font-size: 0.875rem;
+  }
+
+  .ebk-hero__strip .btn {
+    padding-inline: 10px;
+  }
+}

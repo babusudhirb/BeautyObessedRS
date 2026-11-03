@@ -1,0 +1,86 @@
+/* Design tokens. Every colour on the site is one of the six brand values
+   below, or a tint mixed from them. */
+
+:root {
+  /* Brand palette */
+  --ivory: #fbf6f0;
+  --blush: #f7ddd5;
+  --rose: #e58c9a;
+  --wine: #7a1f3d;
+  --gold: #c8963e;
+  --ink: #2b1220;
+  --white: #ffffff;
+
+  /* Tints mixed from the palette */
+  --ink-muted: color-mix(in srgb, var(--ink) 76%, var(--ivory));
+  --blush-soft: color-mix(in srgb, var(--blush) 42%, var(--ivory));
+  --blush-deep: color-mix(in srgb, var(--blush) 74%, var(--rose));
+  --rose-deep: color-mix(in srgb, var(--wine) 52%, var(--rose));
+  /* Warm accents for the e-book collection: icons, ticks and honey buttons */
+  --amber: #d9801c;
+  --amber-ink: #a8540a;
+  --honey: #f6b65f;
+  --honey-light: #fcc77c;
+  --espresso: #31100f;
+
+  --line: var(--blush);
+  --line-gold: color-mix(in srgb, var(--gold) 38%, transparent);
+
+  /* Gradients: reserved for the hero, feature panels and primary buttons */
+  --grad-cta: linear-gradient(100deg, var(--wine) 12%, var(--rose) 135%);
+  --grad-title: linear-gradient(122deg, var(--ivory) -18%, var(--blush) 56%, var(--blush-deep) 108%);
+  --grad-ebook: linear-gradient(118deg, var(--wine) 6%, var(--rose-deep) 62%, var(--rose) 122%);
+  --grad-blush: linear-gradient(118deg, var(--blush-soft) 0%, var(--blush) 100%);
+  --grad-honey: linear-gradient(100deg, var(--honey) 0%, var(--honey-light) 100%);
+
+  /* Typography */
+  --font-serif: 'Fraunces Variable', 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter Variable', 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-h3: clamp(1.25rem, 1.12rem + 0.5vw, 1.5rem);
+  --text-h2: clamp(1.75rem, 1.3rem + 1.6vw, 2.375rem);
+  --text-display: clamp(2rem, 1.3rem + 2.6vw, 3.125rem);
+
+  /* Spacing scale (4px base) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --section-gap: clamp(40px, 4vw, 58px);
+
+  /* Radii */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 30px;
+  --radius-pill: 999px;
+
+  /* Elevation (wine-tinted, never neutral grey) */
+  --shadow-card: 0 1px 2px rgb(122 31 61 / 0.05), 0 14px 32px -18px rgb(122 31 61 / 0.2);
+  --shadow-raised: 0 2px 6px rgb(122 31 61 / 0.08), 0 22px 44px -22px rgb(122 31 61 / 0.36);
+
+  /* Layout */
+  --container: 1220px;
+  --container-wide: 1400px;
+  --gutter: clamp(16px, 5vw, 72px);
+  --gutter-wide: clamp(12px, 3.4vw, 52px);
+  --nav-h: 68px;
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@media (max-width: 639px) {
+  :root {
+    --nav-h: 60px;
+  }
+}

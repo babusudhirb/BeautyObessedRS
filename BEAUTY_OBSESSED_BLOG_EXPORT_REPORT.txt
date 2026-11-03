@@ -1,0 +1,167 @@
+==============================================================================
+BEAUTY OBSESSED — BLOG EXPORT REPORT
+==============================================================================
+
+Export date: 2026-10-27
+Source: src/data/articles/ (one file per article; index.js sets the order and read times)
+
+SUMMARY
+  Article source files found ............ 20
+  Articles listed by the site (index.js)  20
+  Articles exported to the .md file ..... 20
+  Articles exported to the .txt file .... 20
+  Source files not used by the site ..... none
+  Site entries without a source file .... none
+  Duplicate slugs ....................... none
+  Total words in article bodies ......... 19,349
+  Result ................................ every article found was exported completely to both files
+
+HOW COMPLETENESS WAS CHECKED
+  The exports were generated directly from the source files, not retyped. Every
+  piece of source text for each article (title, SEO fields, keywords, summary,
+  alt text, every paragraph, heading, list item, tip, table cell, FAQ question and
+  answer, and the conclusion) was then searched for in both exported files:
+  word for word in the .md, and with link and bold markup removed in the .txt.
+
+ARTICLES
+
+   1. Beginner Skincare Routine for Indian Skin
+      Slug: beginner-skincare-routine-for-indian-skin
+      Category: Skincare · 1203 words · 7 sections · 5 FAQs · 0 table(s) · 1 tip box(es) · 1 extra image(s)
+      Full body extracted: Yes (63 text pieces checked; missing from .md: 0; missing from .txt: 0)
+      Metadata not set in the source: publication date, last-updated date, image caption
+
+   2. Morning vs Night Skincare Routine: What’s Different?
+      Slug: morning-vs-night-skincare-routine
+      Category: Skincare · 966 words · 6 sections · 5 FAQs · 1 table(s) · 1 tip box(es) · 0 extra image(s)
+      Full body extracted: Yes (78 text pieces checked; missing from .md: 0; missing from .txt: 0)
+      Metadata not set in the source: publication date, last-updated date, image caption
+
+   3. How to Build a Skincare Routine on a Budget in India
+      Slug: budget-skincare-routine-india
+      Category: Skincare · 1025 words · 6 sections · 5 FAQs · 0 table(s) · 1 tip box(es) · 0 extra image(s)
+      Full body extracted: Yes (59 text pieces checked; missing from .md: 0; missing from .txt: 0)
+      Metadata not set in the source: publication date, last-updated date, image caption
+
+   4. Sunscreen Guide: SPF, PA Ratings and How to Apply
+      Slug: sunscreen-guide-spf-pa-ratings
+      Category: Skincare · 1146 words · 9 sections · 6 FAQs · 1 table(s) · 1 tip box(es) · 0 extra image(s)
+      Full body extracted: Yes (78 text pieces checked; missing from .md: 0; missing from .txt: 0)
+      Metadata not set in the source: publication date, last-updated date, image caption
+
+   5. How to Layer Skincare Products in the Correct Order
+      Slug: how-to-layer-skincare-products
+      Category: Skincare · 900 words · 7 sections · 5 FAQs · 0 table(s) · 1 tip box(es) · 0 extra image(s)
+      Full body extracted: Yes (65 text pieces checked; missing from .md: 0; missing from .txt: 0)
+      Metadata not set in the source: publication date, last-updated date, image caption
+
+   6. Dry Skin vs Dehydrated Skin: Key Differences
+      Slug: dry-skin-vs-dehydrated-skin
+      Category: Skincare · 885 words · 7 sections · 5 FAQs · 1 table(s) · 1 tip box(es) · 0 extra image(s)
+      Full body extracted: Yes (83 text pieces checked; missing from .md: 0; missing from .txt: 0)
+      Metadata not set in the source: publication date, last-updated date, image caption
+
+   7. Common Skincare Mistakes Beginners Should Avoid
+      Slug: common-skincare-mistakes-beginners
+      Category: Skincare · 1006 words · 11 sections · 5 FAQs · 0 table(s) · 1 tip box(es) · 0 extra image(s)
+      Full body extracted: Yes (58 text pieces checked; missing from .md: 0; missing from .txt: 0)
+      Metadata not set in the source: publication date, last-updated date, image caption
+
+   8. Haircare Routine for Beginners in India
+      Slug: haircare-routine-for-beginners-india
+      Category: Haircare · 1021 words · 8 sections · 5 FAQs · 0 table(s) · 0 tip box(es) · 1 extra image(s)
+      Full body extracted: Yes (61 text pieces checked; missing from .md: 0; missing from .txt: 0)
+      Metadata not set in the source: publication date, last-updated date, image caption
+
+   9. Hair Fall vs Hair Breakage: How to Tell the Difference
+      Slug: hair-fall-vs-hair-breakage
+      Category: Haircare · 1047 words · 7 sections · 5 FAQs · 1 table(s) · 0 tip box(es) · 1 extra image(s)
+      Full body extracted: Yes (82 text pieces checked; missing from .md: 0; missing from .txt: 0)
+      Metadata not set in the source: publication date, last-updated date, image caption
+
+  10. How Often Should You Wash Your Hair?
+      Slug: how-often-should-you-wash-your-hair
+      Category: Haircare · 969 words · 7 sections · 5 FAQs · 1 table(s) · 1 tip box(es) · 0 extra image(s)
+      Full body extracted: Yes (71 text pieces checked; missing from .md: 0; missing from .txt: 0)
+      Metadata not set in the source: publication date, last-updated date, image caption
+
+  11. Dry and Frizzy Hair: A Practical Care Routine
+      Slug: dry-frizzy-hair-care-routine
+      Category: Haircare · 904 words · 7 sections · 5 FAQs · 0 table(s) · 1 tip box(es) · 0 extra image(s)
+      Full body extracted: Yes (60 text pieces checked; missing from .md: 0; missing from .txt: 0)
+      Metadata not set in the source: publication date, last-updated date, image caption
+
+  12. Hair Oiling: How to Do It and Common Mistakes
+      Slug: hair-oiling-guide
+      Category: Haircare · 1102 words · 6 sections · 5 FAQs · 0 table(s) · 1 tip box(es) · 0 extra image(s)
+      Full body extracted: Yes (63 text pieces checked; missing from .md: 0; missing from .txt: 0)
+      Metadata not set in the source: publication date, last-updated date, image caption
+
+  13. A Simple Daily Beauty Routine for Busy People
+      Slug: daily-beauty-routine-for-busy-people
+      Category: Daily Routines · 873 words · 6 sections · 5 FAQs · 0 table(s) · 1 tip box(es) · 1 extra image(s)
+      Full body extracted: Yes (67 text pieces checked; missing from .md: 0; missing from .txt: 0)
+      Metadata not set in the source: publication date, last-updated date, image caption
+
+  14. Everyday Makeup Routine for Beginners
+      Slug: everyday-makeup-routine-for-beginners
+      Category: Makeup · 881 words · 5 sections · 5 FAQs · 0 table(s) · 1 tip box(es) · 0 extra image(s)
+      Full body extracted: Yes (66 text pieces checked; missing from .md: 0; missing from .txt: 0)
+      Metadata not set in the source: publication date, last-updated date, image caption
+
+  15. How to Choose Makeup for Your Skin Type
+      Slug: how-to-choose-makeup-for-your-skin-type
+      Category: Makeup · 931 words · 8 sections · 5 FAQs · 0 table(s) · 1 tip box(es) · 0 extra image(s)
+      Full body extracted: Yes (65 text pieces checked; missing from .md: 0; missing from .txt: 0)
+      Metadata not set in the source: publication date, last-updated date, image caption
+
+  16. Beauty Essentials Worth Keeping in Your Bag
+      Slug: beauty-essentials-for-your-bag
+      Category: Daily Routines · 812 words · 6 sections · 5 FAQs · 0 table(s) · 1 tip box(es) · 0 extra image(s)
+      Full body extracted: Yes (61 text pieces checked; missing from .md: 0; missing from .txt: 0)
+      Metadata not set in the source: publication date, last-updated date, image caption
+
+  17. What Is Your Skin Type? A Simple Guide
+      Slug: what-is-your-skin-type
+      Category: Skincare · 921 words · 6 sections · 5 FAQs · 1 table(s) · 1 tip box(es) · 0 extra image(s)
+      Full body extracted: Yes (72 text pieces checked; missing from .md: 0; missing from .txt: 0)
+      Metadata not set in the source: publication date, last-updated date, image caption
+
+  18. Can You Use Vitamin C and Niacinamide Together?
+      Slug: vitamin-c-and-niacinamide-together
+      Category: Ingredients · 925 words · 6 sections · 5 FAQs · 0 table(s) · 1 tip box(es) · 0 extra image(s)
+      Full body extracted: Yes (61 text pieces checked; missing from .md: 0; missing from .txt: 0)
+      Metadata not set in the source: publication date, last-updated date, image caption
+
+  19. How to Introduce a New Skincare Product Safely
+      Slug: how-to-introduce-new-skincare-product
+      Category: Skincare · 964 words · 7 sections · 5 FAQs · 0 table(s) · 1 tip box(es) · 0 extra image(s)
+      Full body extracted: Yes (61 text pieces checked; missing from .md: 0; missing from .txt: 0)
+      Metadata not set in the source: publication date, last-updated date, image caption
+
+  20. Your Weekly Skin and Hair Self-Care Checklist
+      Slug: weekly-skin-and-hair-self-care-checklist
+      Category: Daily Routines · 868 words · 7 sections · 5 FAQs · 0 table(s) · 1 tip box(es) · 0 extra image(s)
+      Full body extracted: Yes (71 text pieces checked; missing from .md: 0; missing from .txt: 0)
+      Metadata not set in the source: publication date, last-updated date, image caption
+
+MISSING METADATA AND CONTENT TO REVIEW
+  • Publication and last-updated dates: not set for any article (datePublished and
+    dateModified are empty). Marked "Not specified" in the exports.
+  • Image captions: no image on any article has a caption. Marked "Not specified".
+  • Review: the articles are attributed to Rachna Sinha but have not yet been
+    reviewed by her.
+  • /medical-disclaimer, linked under every article, is still a "coming soon" page.
+  • Read times are calculated by the site from the word count, not set by hand.
+  • No article is incomplete: every one has an introduction, main sections, FAQs,
+    a conclusion and three related articles.
+
+OTHER BLOG-RELATED ITEMS IN THE PROJECT (NOT ARTICLES, NOT EXPORTED)
+  • src/data/content.js → posts: the homepage "New every day" section shows three
+    older placeholder cards (title and summary only, no article text). Their links
+    redirect to articles 1, 11 and 14.
+  • src/data/blog.js → videos: three "Watch and read" cards that open the YouTube
+    channel. They are videos, not articles.
+  • src/data/blog.js → movedArticles: old addresses that redirect to the articles.
+
+

@@ -1,0 +1,87 @@
+.about__heading {
+  margin-bottom: clamp(16px, 2vw, 24px);
+}
+
+.about__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.3fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(18px, 2.6vw, 40px);
+}
+
+.about__photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  /* Rachna's face sits right of centre in the source photograph. */
+  object-position: 74% 28%;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.about__greeting {
+  margin-bottom: 8px;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--text-h3);
+  line-height: 1.2;
+  color: var(--wine);
+}
+
+.about__bio p {
+  max-width: 56ch;
+  line-height: 1.6;
+}
+
+.about__bio p + p {
+  margin-top: 8px;
+}
+
+.about__bio .btn {
+  margin-top: 16px;
+}
+
+.about__facts {
+  padding: clamp(8px, 1vw, 12px) clamp(18px, 2.2vw, 30px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--grad-blush);
+}
+
+.about__fact {
+  display: grid;
+  grid-template-columns: minmax(84px, 0.42fr) 1fr;
+  gap: 12px;
+  padding-block: 10px;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+
+.about__fact + .about__fact {
+  border-top: 1px solid color-mix(in srgb, var(--wine) 12%, transparent);
+}
+
+.about__fact dt {
+  font-weight: 700;
+}
+
+@media (max-width: 999.98px) {
+  .about__grid {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  }
+
+  .about__facts {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 639.98px) {
+  .about__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .about__photo {
+    aspect-ratio: 16 / 10;
+    object-position: 70% 30%;
+  }
+}

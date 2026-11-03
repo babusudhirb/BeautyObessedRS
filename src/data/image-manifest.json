@@ -1,0 +1,663 @@
+{
+  "hero-rachna": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "source": "hero section rachna.png"
+  },
+  "hero-book": {
+    "width": 1374,
+    "height": 1145,
+    "widths": [
+      480,
+      800,
+      1200,
+      1374
+    ],
+    "source": "hero image book.png"
+  },
+  "hero-salon": {
+    "width": 1981,
+    "height": 793,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600,
+      1981
+    ],
+    "source": "salon hero section dwon.png"
+  },
+  "podcast-rachna": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "source": "podcast-rachna.png.png"
+  },
+  "ebook-product": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "source": "ebook-product.png.png"
+  },
+  "beauty-plan-phone": {
+    "width": 1374,
+    "height": 1145,
+    "widths": [
+      480,
+      800,
+      1200,
+      1374
+    ],
+    "source": "beauty-plan-phone.png.png"
+  },
+  "blog-haircare": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "source": "blog-haircare.png"
+  },
+  "blog-makeup": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "source": "blog-makeup.png"
+  },
+  "blog-skincare": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "source": "blog-skincare.png"
+  },
+  "product-bodycare": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "source": "product-bodycare.png.png"
+  },
+  "product-haircare": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "source": "product-haircare.png"
+  },
+  "product-skincare": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "source": "product-skincare.png.png"
+  },
+  "product-sunscreen": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "source": "product-sunscreen.png"
+  },
+  "home-hero-portrait": {
+    "width": 1728,
+    "height": 910,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600,
+      1728
+    ],
+    "source": "hero section girls in homepage.png"
+  },
+  "home-podcast": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "source": "homapge podcast image.png"
+  },
+  "pod-hero": {
+    "width": 1672,
+    "height": 941,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600,
+      1672
+    ],
+    "source": "podcast/podcast hero section image .png"
+  },
+  "pod-studio": {
+    "width": 1672,
+    "height": 941,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600,
+      1672
+    ],
+    "source": "podcast/champagne-gold aesthetic f.png"
+  },
+  "pod-hero-mobile": {
+    "width": 1199,
+    "height": 1312,
+    "widths": [
+      480,
+      800,
+      1199
+    ],
+    "source": "podcast/mobile-friendly hero image podcast .png"
+  },
+  "shop-hero-mobile": {
+    "width": 1199,
+    "height": 1312,
+    "widths": [
+      480,
+      800,
+      1199
+    ],
+    "source": "podcast/Shop page hero image mobile.png"
+  },
+  "pod-headphones": {
+    "width": 492,
+    "height": 330,
+    "widths": [
+      492
+    ],
+    "source": "podcast/champagne-gold aesthetic f.png",
+    "extract": {
+      "left": 1180,
+      "top": 470,
+      "width": 492,
+      "height": 330
+    }
+  },
+  "topic-routines": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "source": "podcast/Daily Routines.png"
+  },
+  "topic-skincare": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "source": "podcast/Skincare.png"
+  },
+  "topic-haircare": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "source": "podcast/beauty  hair image.png"
+  },
+  "topic-diet": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "source": "podcast/l salad.png"
+  },
+  "topic-makeup": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "source": "podcast/brushes, cosmetics.png"
+  },
+  "topic-salon": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "source": "podcast/luxury salon.png"
+  },
+  "retail-hero": {
+    "width": 1671,
+    "height": 941,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600,
+      1671
+    ],
+    "source": "retail/hero secttion image.png"
+  },
+  "retail-cat-haircare": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "source": "retail/hair-care product.png"
+  },
+  "retail-cat-nailcare": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "source": "retail/nail-care product.png"
+  },
+  "retail-cat-bodycare": {
+    "width": 1448,
+    "height": 1086,
+    "widths": [
+      480,
+      800,
+      1200,
+      1448
+    ],
+    "source": "retail/body-care product.png"
+  },
+  "retail-serum": {
+    "width": 1122,
+    "height": 1402,
+    "widths": [
+      480,
+      800,
+      1122
+    ],
+    "source": "retail/skin care secton Radiance Face Serum.png"
+  },
+  "retail-moisturiser": {
+    "width": 1122,
+    "height": 1402,
+    "widths": [
+      480,
+      800,
+      1122
+    ],
+    "source": "retail/Hydrating Moisturiser product.png"
+  },
+  "retail-shampoo": {
+    "width": 1122,
+    "height": 1402,
+    "widths": [
+      480,
+      800,
+      1122
+    ],
+    "source": "retail/Nourishing Shampoo product.png"
+  },
+  "retail-conditioner": {
+    "width": 1254,
+    "height": 1254,
+    "widths": [
+      480,
+      800,
+      1200,
+      1254
+    ],
+    "source": "retail/Repairing Conditioner product.png"
+  },
+  "retail-hair-mask": {
+    "width": 1254,
+    "height": 1254,
+    "widths": [
+      480,
+      800,
+      1200,
+      1254
+    ],
+    "source": "retail/Intensive Hair Mask.png"
+  },
+  "retail-hair-oil": {
+    "width": 1254,
+    "height": 1254,
+    "widths": [
+      480,
+      800,
+      1200,
+      1254
+    ],
+    "source": "retail/Hair Growth Oil.png"
+  },
+  "retail-nail-oil": {
+    "width": 1254,
+    "height": 1254,
+    "widths": [
+      480,
+      800,
+      1200,
+      1254
+    ],
+    "source": "retail/Nail Care Oil.png"
+  },
+  "retail-nail-strengthener": {
+    "width": 1402,
+    "height": 1122,
+    "widths": [
+      480,
+      800,
+      1200,
+      1402
+    ],
+    "source": "retail/Nail Strengthener.png"
+  },
+  "retail-cuticle-cream": {
+    "width": 1402,
+    "height": 1122,
+    "widths": [
+      480,
+      800,
+      1200,
+      1402
+    ],
+    "source": "retail/Cuticle Cream.png"
+  },
+  "retail-hand-cream": {
+    "width": 1402,
+    "height": 1122,
+    "widths": [
+      480,
+      800,
+      1200,
+      1402
+    ],
+    "source": "retail/Hand Cream.png"
+  },
+  "retail-cleanser": {
+    "width": 300,
+    "height": 450,
+    "widths": [
+      300
+    ],
+    "source": "retail/hero secttion image.png",
+    "extract": {
+      "left": 848,
+      "top": 280,
+      "width": 300,
+      "height": 450
+    }
+  },
+  "nl-hero": {
+    "width": 1672,
+    "height": 941,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600,
+      1672
+    ],
+    "source": "hero section of news letter.png"
+  },
+  "nl-hero-mobile": {
+    "width": 1448,
+    "height": 1086,
+    "widths": [
+      480,
+      800,
+      1200,
+      1448
+    ],
+    "source": "hero section in mobile view newsletter.png"
+  },
+  "about-hero": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "source": "Hero section image NEW .png"
+  },
+  "nav-logo": {
+    "width": 1351,
+    "height": 922,
+    "widths": [
+      96,
+      192
+    ],
+    "source": "Rs logo in nav bar.png",
+    "extract": {
+      "left": 102,
+      "top": 77,
+      "width": 1351,
+      "height": 922
+    }
+  },
+  "ebook-hero-books": {
+    "width": 1542,
+    "height": 1020,
+    "widths": [
+      480,
+      800,
+      1200,
+      1542
+    ],
+    "source": "ebook hero section books.png"
+  },
+  "ebook-cover-daily-routine": {
+    "width": 1149,
+    "height": 1369,
+    "widths": [
+      480,
+      800,
+      1149
+    ],
+    "source": "ebook-beauty-daily-routine.png.png"
+  },
+  "ebook-cover-skincare": {
+    "width": 1149,
+    "height": 1369,
+    "widths": [
+      480,
+      800,
+      1149
+    ],
+    "source": "ebook-skincare-guide.png.png"
+  },
+  "ebook-cover-haircare": {
+    "width": 1149,
+    "height": 1369,
+    "widths": [
+      480,
+      800,
+      1149
+    ],
+    "source": "ebook-haircare-guide.png.png"
+  },
+  "ebook-collection": {
+    "width": 1536,
+    "height": 1024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1536
+    ],
+    "source": "ebook-complete-collection.png.png"
+  },
+  "ebook-inside-spread": {
+    "width": 1816,
+    "height": 866,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600,
+      1816
+    ],
+    "source": "ebook-inside-spread.png"
+  },
+  "ebook-author-reading": {
+    "width": 940,
+    "height": 846,
+    "widths": [
+      320,
+      640,
+      940
+    ],
+    "source": "reading e book.png",
+    "extract": {
+      "left": 745,
+      "top": 36,
+      "width": 940,
+      "height": 846
+    }
+  },
+  "ebook-salon-book": {
+    "width": 925,
+    "height": 725,
+    "widths": [
+      480,
+      925
+    ],
+    "source": "Salon Expert Guide banner ebook.png",
+    "extract": {
+      "left": 0,
+      "top": 0,
+      "width": 925,
+      "height": 725
+    }
+  },
+  "inside-skincare": {
+    "width": 1029,
+    "height": 865,
+    "widths": [
+      152,
+      304
+    ],
+    "source": "product-skincare.png.png",
+    "extract": {
+      "left": 300,
+      "top": 60,
+      "width": 1029,
+      "height": 865
+    }
+  },
+  "inside-haircare": {
+    "width": 891,
+    "height": 749,
+    "widths": [
+      152,
+      304
+    ],
+    "source": "product-haircare.png",
+    "extract": {
+      "left": 0,
+      "top": 262,
+      "width": 891,
+      "height": 749
+    }
+  },
+  "inside-nailcare": {
+    "width": 78,
+    "height": 80,
+    "widths": [
+      78,
+      156
+    ],
+    "source": "beauty-plan-phone.png.png",
+    "extract": {
+      "left": 781,
+      "top": 511,
+      "width": 78,
+      "height": 80
+    }
+  },
+  "inside-diet": {
+    "width": 78,
+    "height": 80,
+    "widths": [
+      78,
+      156
+    ],
+    "source": "beauty-plan-phone.png.png",
+    "extract": {
+      "left": 781,
+      "top": 746,
+      "width": 78,
+      "height": 80
+    }
+  }
+}

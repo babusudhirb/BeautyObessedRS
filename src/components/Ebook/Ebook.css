@@ -1,0 +1,267 @@
+.ebook {
+  padding-top: clamp(20px, 2.4vw, 32px);
+}
+
+/* A light, almost white panel: the e-book's own look, next to the blush
+   Beauty Plan panel above and the podcast panel below. */
+.ebook__panel {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(100deg, var(--white) 0%, var(--blush-soft) 56%, var(--white) 100%);
+  box-shadow: var(--shadow-card);
+}
+
+/* Three columns: copy | book | contents. The inner box lines the copy up with
+   the rest of the page; it has no vertical padding so the book can run the
+   full height of the panel. */
+.ebook__inner {
+  --pad: clamp(22px, 3vw, 44px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.05fr) minmax(0, 0.76fr);
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    'head visual inside'
+    'body visual inside';
+  width: min(100% - 2 * clamp(16px, 3.2vw, 44px), var(--container));
+  margin-inline: auto;
+}
+
+/* ---------- Copy ---------- */
+
+/* Above the photograph, whose faded left side runs behind the copy. */
+.ebook__head,
+.ebook__body,
+.ebook__inside {
+  position: relative;
+  z-index: 1;
+}
+
+.ebook__head {
+  grid-area: head;
+  padding-top: var(--pad);
+}
+
+.ebook__title {
+  margin-top: 10px;
+  font-size: clamp(2rem, 3.2vw, 2.875rem);
+  line-height: 1.04;
+  white-space: nowrap;
+}
+
+.ebook__copy {
+  margin-top: 12px;
+  font-size: clamp(1rem, 1.15vw, 1.0625rem);
+  line-height: 1.5;
+}
+
+.ebook__body {
+  grid-area: body;
+  padding-bottom: var(--pad);
+}
+
+.ebook__benefits {
+  display: grid;
+  gap: 7px;
+  margin-top: 18px;
+}
+
+.ebook__benefits li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  line-height: 1.35;
+}
+
+.ebook__benefit-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--wine);
+}
+
+.ebook__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 26px;
+  margin-top: 22px;
+}
+
+.ebook__more {
+  font-size: var(--text-base);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 7px;
+}
+
+/* ---------- Book ---------- */
+
+.ebook__visual {
+  grid-area: visual;
+  position: relative;
+  container-type: inline-size;
+  min-height: 380px;
+}
+
+/* The photograph is as tall as the panel (less in a narrow column) and is
+   anchored by the book: the hardback's spine is 37.5% of the way across the
+   picture, so shifting the picture left by 37.5% of its own width puts the
+   spine at the column's left edge at every size. The picture already has
+   soft, transparent edges, so it needs no frame.
+
+   The mask keeps the copy clear: everything left of the spine (the tablet) is
+   hidden, except the bottom strip where the second book lies, which is kept
+   from a little further left. Result = spine cut + (bottom strip x left cut). */
+.ebook__img {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  width: auto;
+  max-width: none;
+  height: min(100%, 128cqw);
+  transform: translate(-37.5%, -50%);
+  -webkit-mask-image: linear-gradient(to right, transparent 35.8%, #000 37.6%),
+    linear-gradient(to bottom, transparent 71%, #000 75%),
+    linear-gradient(to right, transparent 26.5%, #000 31%);
+  mask-image: linear-gradient(to right, transparent 35.8%, #000 37.6%),
+    linear-gradient(to bottom, transparent 71%, #000 75%),
+    linear-gradient(to right, transparent 26.5%, #000 31%);
+  -webkit-mask-composite: source-over, source-in;
+  mask-composite: add, intersect;
+}
+
+/* ---------- What you'll find inside ---------- */
+
+.ebook__inside {
+  grid-area: inside;
+  align-self: center;
+  padding-block: var(--pad);
+}
+
+.ebook__inside-title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(1.375rem, 1.1rem + 0.8vw, 1.75rem);
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+  color: var(--wine);
+}
+
+.ebook__inside-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.inside-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 6px 14px 6px 6px;
+  border-radius: var(--radius-sm);
+}
+
+.inside-card__img {
+  flex: none;
+  width: 76px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.inside-card__text {
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+
+/* Two set lines, as in the design; they reflow if the card gets narrow. */
+.inside-card__text span {
+  display: block;
+}
+
+/* One soft pulse after "See what's inside" is pressed. */
+.ebook__inside-list[data-highlighted] .inside-card {
+  animation: inside-pulse 0.9s var(--ease);
+}
+
+@keyframes inside-pulse {
+  35% {
+    border-color: var(--wine);
+    box-shadow:
+      0 0 0 3px rgb(122 31 61 / 0.14),
+      var(--shadow-card);
+  }
+}
+
+/* ---------- Tablet: copy beside the book, contents underneath ---------- */
+
+@media (max-width: 1199.98px) {
+  .ebook__inner {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      'head visual'
+      'body visual'
+      'inside inside';
+  }
+
+  .ebook__inside {
+    padding-top: 0;
+  }
+
+  .ebook__inside-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---------- Phone: one column, with the book straight after the heading ---------- */
+
+@media (max-width: 699.98px) {
+  .ebook__inner {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    grid-template-areas:
+      'head'
+      'visual'
+      'body'
+      'inside';
+  }
+
+  .ebook__title {
+    white-space: normal;
+  }
+
+  /* The whole photograph, hardback and tablet edition together. */
+  .ebook__visual {
+    min-height: 0;
+    margin: 10px -8px 0;
+  }
+
+  .ebook__img {
+    position: static;
+    width: 100%;
+    height: auto;
+    transform: none;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .ebook__benefits {
+    margin-top: 6px;
+  }
+
+  .ebook__inside-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 479.98px) {
+  .ebook__actions .btn {
+    width: 100%;
+  }
+}
